@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Principal</title>
+    <title>Dashboard Multivista</title>
     <style>
         :root {
             --primary-color: #0a2540;
@@ -11,61 +12,173 @@
             --dark-slate: #1e293b;
             --border-color: #cbd5e1;
             --light-bg: #f8fafc;
+            --header-height: 52px;
         }
 
-        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-        body { background-color: #cbd5e1; margin: 0; padding: 40px; color: #334155; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        h1 {
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 24px;
-        }
-
-        .menu-buttons {
+        body {
+            background-color: var(--light-bg);
+            color: #334155;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header Principal */
+        header {
+            background-color: var(--primary-color);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .header-buttons::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .header-buttons::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
         }
 
         .btn {
-            padding: 12px 20px;
-            font-weight: 700;
-            border: none;
-            border-radius: 6px;
+            padding: 6px 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            display: block;
-            width: 100%;
+            background-color: transparent;
+            color: white;
+            white-space: nowrap;
         }
-        
-        .btn-menu { background-color: var(--primary-color); color: white; }
-        .btn-menu:hover { background-color: var(--dark-slate); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn.active {
+            background-color: var(--accent-green);
+            color: var(--primary-color);
+            border-color: var(--accent-green);
+        }
+
+        /* Botón para abrir en nueva pestaña */
+        .btn-external {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 20px;
+        }
+
+        .btn-external:hover {
+            background-color: #2563eb;
+        }
+
+        /* Contenedor del Iframe */
+        .iframe-container {
+            flex-grow: 1;
+            width: 100%;
+            background-color: #cbd5e1;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            /* Evitar scroll externo innecesario */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border: none;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Menú Principal</h1>
-        <div class="menu-buttons">
-            <a href="1.COTIZACION PREMEZCLADO V.3 (2).html" class="btn btn-menu">Cotización Premezclado</a>
-            <a href="2.GUIA_REMITENTE_ECOROCK V.2.html" class="btn btn-menu">Guía Remitente Ecorock</a>
-            <a href="3.GUIA DE BOLETA DE VENTA ECOROCK V.2.html" class="btn btn-menu">Guía de Boleta de Venta</a>
-            <a href="4.ORDEN COMPRAS_ECOROCK V.3.html" class="btn btn-menu">Orden de Compras</a>
+
+    <header>
+        <div class="header-title">ECOROCK Docs</div>
+        <div class="header-buttons" id="navButtons">
+            <button class="btn active" data-src="1.COTIZACION PREMEZCLADO V.3 (2).html">Cotización</button>
+            <button class="btn" data-src="2.GUIA_REMITENTE_ECOROCK V.2.html">Guía Remitente</button>
+            <button class="btn" data-src="3.GUIA DE BOLETA DE VENTA ECOROCK V.2.html">Boleta Venta</button>
+            <button class="btn" data-src="4.ORDEN COMPRAS_ECOROCK V.3.html">Orden Compras</button>
         </div>
+        <button class="btn btn-external" id="btnOpenExternal" title="Abrir en otra página">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Abrir
+        </button>
+    </header>
+
+    <div class="iframe-container">
+        <iframe id="mainIframe" src="1.COTIZACION PREMEZCLADO V.3 (2).html" title="Visor de Documentos"></iframe>
     </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.header-buttons .btn');
+        const iframe = document.getElementById('mainIframe');
+        const btnOpenExternal = document.getElementById('btnOpenExternal');
+
+        let currentSrc = "1.COTIZACION PREMEZCLADO V.3 (2).html";
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Quitar clase active a todos
+                buttons.forEach(btn => btn.classList.remove('active'));
+
+                // Añadir clase active al pulsado
+                button.classList.add('active');
+
+                // Cambiar el src del iframe
+                currentSrc = button.getAttribute('data-src');
+                iframe.src = currentSrc;
+            });
+        });
+
+        // Abrir la vista actual en una pestaña nueva
+        btnOpenExternal.addEventListener('click', () => {
+            window.open(currentSrc, '_blank');
+        });
+    </script>
 </body>
+
 </html>
