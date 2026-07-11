@@ -4,7 +4,7 @@ echo   ACTUALIZANDO EL MENU DE LA BARRA LATERAL (SIDEBAR)
 echo ========================================================
 echo.
 
-powershell -NoProfile -ExecutionPolicy Bypass -File "src\generador_menu.ps1"
+node "src\build_menu.js"
 
 echo.
 echo ========================================================
