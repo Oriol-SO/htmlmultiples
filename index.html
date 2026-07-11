@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Multivista - Sidebar</title>
-    <!-- Cargamos los datos generados por el .bat -->
-    <script src="menu_data.js"></script>
+    <!-- Cargamos los datos generados por el script -->
+    <script src="src/menu_data.js"></script>
     <style>
         :root {
             --primary-color: #0a2540;
@@ -42,7 +43,7 @@
             transition: width 0.3s ease;
             position: relative;
             z-index: 20;
-            box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+            box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
         }
 
         .sidebar.collapsed {
@@ -125,13 +126,15 @@
             text-align: left;
             padding: 10px 15px;
             cursor: pointer;
-            font-size: 11.5px; /* Más pequeño para que quepa más */
+            font-size: 11.5px;
+            /* Más pequeño para que quepa más */
             line-height: 1.3;
             display: flex;
             align-items: center;
             gap: 10px;
             transition: all 0.2s;
-            white-space: normal; /* Permitir que el texto baje a la siguiente línea */
+            white-space: normal;
+            /* Permitir que el texto baje a la siguiente línea */
             word-wrap: break-word;
         }
 
@@ -150,14 +153,14 @@
         /* Estilo Carpetas */
         .folder-btn {
             font-weight: 600;
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(0, 0, 0, 0.1);
             justify-content: space-between;
         }
 
         .folder-content {
             display: none;
             flex-direction: column;
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0, 0, 0, 0.2);
             padding-left: 10px;
         }
 
@@ -185,7 +188,8 @@
         .folder-icon-arrow {
             transition: transform 0.2s;
         }
-        .folder-content.open + .folder-btn .folder-icon-arrow {
+
+        .folder-content.open+.folder-btn .folder-icon-arrow {
             transform: rotate(90deg);
         }
 
@@ -207,7 +211,7 @@
             align-items: center;
             justify-content: flex-end;
             padding: 0 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             z-index: 10;
         }
 
@@ -245,9 +249,9 @@
             background-color: white;
             border: none;
         }
-
     </style>
 </head>
+
 <body>
 
     <!-- SIDEBAR -->
@@ -271,7 +275,8 @@
     <div class="main-area">
         <div class="top-bar">
             <button class="btn-external" id="btnOpenExternal" title="Abrir en pestaña nueva">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -279,7 +284,7 @@
                 Abrir Externo
             </button>
         </div>
-        
+
         <div class="iframe-container">
             <iframe id="mainIframe" title="Visor de Documentos"></iframe>
         </div>
@@ -291,7 +296,7 @@
         const sidebarMenu = document.getElementById('sidebarMenu');
         const iframe = document.getElementById('mainIframe');
         const btnOpenExternal = document.getElementById('btnOpenExternal');
-        
+
         let currentSrc = "";
 
         // Iconos SVG reutilizables
@@ -313,11 +318,11 @@
         function loadPage(path, btnElement) {
             currentSrc = path;
             iframe.src = currentSrc;
-            
+
             // Quitar clase active a todos
             document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
             // Poner active al actual
-            if(btnElement) btnElement.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
         }
 
         // Función para generar HTML del menú recursivamente
@@ -356,9 +361,9 @@
         }
 
         // Función global para alternar carpetas (acordeón)
-        window.toggleFolder = function(id) {
+        window.toggleFolder = function (id) {
             const el = document.getElementById(id);
-            if(el) {
+            if (el) {
                 el.classList.toggle('open');
             }
         };
@@ -366,16 +371,16 @@
         // Inicializar menú
         if (typeof menuData !== 'undefined' && menuData.length > 0) {
             sidebarMenu.innerHTML = createMenuHTML(menuData);
-            
+
             // Cargar el primer archivo por defecto si es posible
-            const firstFile = menuData.find(i => i.type === 'file') || 
-                              (menuData[0].children && menuData[0].children.find(i => i.type === 'file'));
-                              
+            const firstFile = menuData.find(i => i.type === 'file') ||
+                (menuData[0].children && menuData[0].children.find(i => i.type === 'file'));
+
             if (firstFile) {
                 // Buscamos el primer botón renderizado que no sea carpeta
                 setTimeout(() => {
                     const firstBtn = sidebarMenu.querySelector('.menu-btn:not(.folder-btn)');
-                    if(firstBtn) firstBtn.click();
+                    if (firstBtn) firstBtn.click();
                 }, 50);
             }
         } else {
@@ -383,4 +388,5 @@
         }
     </script>
 </body>
+
 </html>

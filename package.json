@@ -1,0 +1,15 @@
+{
+  "name": "ecorock-docs",
+  "version": "1.0.0",
+  "description": "Dashboard Multivista para ECOROCK",
+  "main": "index.html",
+  "scripts": {
+    "dev": "node src/build_menu.js && serve .",
+    "build": "node src/build_menu.js"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
+  "author": "Oriol Simon",
+  "license": "ISC"
+}

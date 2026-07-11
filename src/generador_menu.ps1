@@ -53,7 +53,12 @@ $tree = Get-FolderTree -path $basePath
 $json = $tree | ConvertTo-Json -Depth 10 -Compress
 $jsContent = "const menuData = $json;"
 
-# Escribir el archivo
-$jsContent | Out-File -FilePath "menu_data.js" -Encoding utf8
+# Asegurarse de que la carpeta src exista
+if (-not (Test-Path "src")) {
+    New-Item -ItemType Directory -Path "src" | Out-Null
+}
 
-Write-Host "¡Menú actualizado exitosamente en 'menu_data.js'!"
+# Escribir el archivo en la carpeta src
+$jsContent | Out-File -FilePath "src\menu_data.js" -Encoding utf8
+
+Write-Host "¡Menú actualizado exitosamente en 'src\menu_data.js'!"
