@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUIA_REMITENTE_ECOROCK_#1</title>
+    <style>
+        :root {
+            --primary-color: #0d233a; 
+            --accent-green: #70e000;  
+            --dark-slate: #1e293b;
+            --border-color: #cbd5e1;
+            --light-bg: #f8fafc;
+            --alert-red: #dc2626;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: #cbd5e1; margin: 0; padding: 10px; color: #334155; }
+
+        /* Consola de Control Superior */
+        .web-control-panel {
+            max-width: 210mm;
+            margin: 0 auto 8px auto;
+            background: var(--dark-slate);
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            gap: 10px;
+            font-size: 13px;
+        }
+        
+        .panel-actions-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            text-transform: uppercase;
+            transition: all 0.1s ease-in-out;
+        }
+        .btn-print { background-color: #3b82f6; color: white; }
+        .btn-print:hover { background-color: #2563eb; }
+        .btn-save-print { background-color: #10b981; color: white; }
+        .btn-save-print:hover { background-color: #059669; }
+        .btn-add { background-color: #10b981; color: white; }
+        .btn-add:hover { background-color: #059669; }
+        .btn-anular { background-color: #f59e0b; color: white; padding: 2px 6px; font-size: 10px; }
+
+        /* Canvas principal */
+        .page-a4 {
+            width: 210mm;
+            min-height: 100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 15px 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            border: 1.00mm solid var(--primary-color);
+            position: relative;
+        }
+
+        /* ENCABEZADO RESTAURADO (TAL CUAL ESTABA ANTES) */
+        .header-canvas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2.50mm solid var(--primary-color);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .brand-box h1 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: -0.5px; color: var(--primary-color); line-height: 1.1; }
+        .brand-box p { margin: 2px 0; font-size: 10px; color: #475569; line-height: 1.3; font-weight: 600; }
+        
+        .sunat-ruc-box {
+            width: 68mm;
+            border: 0.75mm solid var(--primary-color);
+            text-align: center;
+            padding: 6px;
+            background-color: #fff;
+        }
+        .sunat-ruc-box h2 { margin: 0; font-size: 15px; font-weight: 800; color: #000; }
+        .sunat-ruc-box .title-gre { margin: 3px 0; font-size: 10.5px; font-weight: 800; letter-spacing: 0.5px; color: var(--primary-color); text-transform: uppercase; line-height: 1.2; }
+        
+        .numero-gre-input {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 800;
+            color: #ff4d4d;
+            border: 1px dashed #cbd5e1;
+            background: #fff;
+            text-align: center;
+            width: 100%;
+            outline: none;
+        }
+
+        /* Grillas Organizacionales - Espacios Ajustados */
+        .grid-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0; }
+        .card-datos { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; position: relative; }
+        .card-datos h3 { margin: 0 0 6px 0; font-size: 10px; color: var(--primary-color); text-transform: uppercase; border-bottom: 2px solid var(--primary-color); padding-bottom: 2px; font-weight: 800; }
+
+        .form-group { display: flex; flex-direction: column; margin-bottom: 4px; position: relative; }
+        .form-group label { font-size: 9px; font-weight: 700; color: #475569; margin-bottom: 2px; text-transform: uppercase; }
+        .form-group input, .form-group select { padding: 4px 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 10px; background: #fff; color: #0f172a; font-weight: 600; }
+        
+        /* Contenedores de rutas optimizados y compactos */
+        .full-width-group { grid-column: 1 / span 2; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; border: 1px dashed #cbd5e1; position: relative; margin-bottom: 1px; }
+
+        /* Componente Selector de Proveedor */
+        .selector-proveedor-container {
+            grid-column: 1 / span 2;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .selector-proveedor-title { font-size: 10px; font-weight: 800; color: var(--primary-color); text-transform: uppercase; margin-bottom: 3px; }
+        .selector-proveedor-input { width: 100%; padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 10px; margin-bottom: 4px; background: #f8fafc; }
+        .selector-proveedor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        
+        .proveedor-card-btn {
+            background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px; text-align: left; cursor: pointer; transition: all 0.2s ease; position: relative; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .proveedor-card-btn:hover { background: #e2e8f0; border-color: var(--primary-color); }
+        .proveedor-card-btn .p-name { font-size: 9px; font-weight: 800; color: #0f172a; margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 15px; }
+        .proveedor-card-btn .p-ruc { font-size: 8px; color: #64748b; }
+        .btn-delete-prov { position: absolute; top: 4px; right: 4px; background: transparent; border: none; color: #ef4444; font-size: 9px; cursor: pointer; padding: 2px; line-height: 1; }
+
+        /* Autocompletados */
+        .db-autocomplete-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid var(--border-color); border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-height: 120px; overflow-y: auto; z-index: 100; display: none; }
+        .db-autocomplete-item { padding: 5px 8px; font-size: 10px; cursor: pointer; border-bottom: 1px solid #f1f5f9; }
+
+        /* Toolbar y tablas */
+        .tabla-quick-toolbar { display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 4px 10px; border-radius: 6px 6px 0 0; border: 1px solid #cbd5e1; border-bottom: none; gap: 10px; margin-top: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+        th { background-color: var(--primary-color) !important; color: white !important; font-size: 10px; padding: 5px 4px; border: 1px solid #1e293b; text-transform: uppercase; }
+        td { border: 1px solid #cbd5e1; padding: 4px 4px; font-size: 10px; position: relative; }
+        
+        .input-cell { width: 100%; border: 1px solid transparent; background: transparent; padding: 2px 4px; font-size: 10px; color: #0f172a; font-weight: 600; }
+        .input-cell:focus { border-color: #3b82f6; background: #fff; outline: none; }
+        
+        .text-center { text-align: center !important; }
+        .text-right { text-align: right !important; font-weight: 600; }
+        .print-value-bridge { display: none; word-wrap: break-word; }
+
+        .lema-container {
+text-align:center;
+margin:8px 0;
+padding:10px 12px;
+border-top:2px dashed var(--primary-color);
+border-bottom:2px dashed var(--primary-color);
+font-weight:900;
+color:var(--primary-color);
+font-size:10.5px;
+background:linear-gradient(90deg,#eef6d8,#f7f8e9,#eef6d8)!important;
+letter-spacing:.4px;
+text-transform:uppercase;
+}
+
+        /* Bloque de Firmas y Sello Corregido */
+        .sunat-footer-summary { display: flex; justify-content: space-between; align-items: stretch; margin-top: 6px; background: #f8fafc; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; }
+        .container-firmas { display: flex; gap: 12px; flex: 1; justify-content: space-around; width: 100%; }
+        .bloque-firma { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; flex: 1; position: relative; min-height: 160px; }
+        .linea-firma { width: 100%; border-top: 1.5px dashed var(--primary-color); margin-top: auto; margin-bottom: 3px; z-index: 5; position: relative; }
+        .texto-firma { font-size: 8.5px; font-weight: 800; color: var(--primary-color); text-transform: uppercase; margin-top: 1px; z-index: 10; position: relative; }
+        .input-firma-det { border: none; border-bottom: 1px dashed #cbd5e1; width: 100%; text-align: center; font-size: 8.5px; font-weight: 600; background: transparent; outline: none; margin-bottom: 1px; padding: 1px; height: 14px; z-index: 5; position: relative; }
+
+        /* CONEDOR DEL SELLO: Pegado directamente sobre la línea de firma (--------------------) */
+        .sello-visto-bueno-container { 
+            position: absolute; 
+            top:50%; /* Ajustado perfectamente para posarse inmediatamente encima de la línea discontinua */
+            left: 50%; 
+            transform:translate(-50%,-50%); 
+            width:105px; 
+            height:105px; 
+            display: none; 
+            z-index: 15; 
+        }
+        .sello-visto-bueno-container img { width: 100%; height: 100%; object-fit: contain; opacity: 0.85; }
+
+        /* Panel de control del sello en el centro exacto del recuadro del sello */
+        .sello-actions-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 25;
+            display: flex;
+            gap: 3px;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        /* Consolas externas */
+        .external-container { max-width: 210mm; margin: 15px auto; background: #fff; padding: 12px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px dashed var(--dark-slate); }
+        .external-container h2 { font-size: 11px; margin-top: 0; color: var(--dark-slate); border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; font-weight: 800; text-transform: uppercase; }
+
+        /* SUGERENCIA PIE DE PÁGINA CORPORATIVO CON RELLENO */
+        .footer-premium-brand { 
+            border-top: 2px solid var(--primary-color); 
+            padding: 8px; 
+            margin-top: 6px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 2px; 
+            background-color: #f1f5f9; 
+            border-radius: 0 0 6px 6px;
+        }
+        .footer-premium-brand .line1 { font-size: 9.5px; font-weight: 900; color: var(--primary-color); letter-spacing: 0.3px; }
+        .footer-premium-brand .line2 { font-size: 8.5px; font-weight: 700; color: #64748b; text-transform: uppercase; }
+
+        /* REGLAS EXCLUSIVAS DE IMPRESIÓN A4 */
+        @media print {
+            @page { size: A4 portrait; margin: 0; }
+            body { margin: 0!important; padding: 0!important; background: #fff!important; color: #000!important; -webkit-print-color-adjust: exact!important; print-color-adjust: exact!important; }
+            
+            .web-control-panel, .external-container, .btn-action-row, .btn-del, #btn-buscar-ruc, .btn-anular, .db-autocomplete-dropdown, .sello-actions-panel, .tabla-quick-toolbar, .selector-proveedor-container, .btn-delete-prov, #btn-mixer-trigger { display: none!important; }
+            
+            .page-a4 { 
+                width: 210mm!important; 
+                min-height: 297mm!important; 
+                padding: 10mm 12mm!important; 
+                border: none!important; 
+                box-shadow: none!important; 
+                overflow: hidden!important; 
+                display: flex!important; 
+                flex-direction: column!important; 
+                justify-content: space-between!important; 
+            }
+            
+            .grid-datos { gap: 14px!important; margin: 12px 0!important; }
+            .card-datos { padding: 10px!important; }
+            .form-group { margin-bottom: 8px!important; }
+            .full-width-group { margin-bottom: 8px!important; padding: 8px 12px!important; }
+            table { width: 100%!important; table-layout: fixed!important; border-collapse: collapse!important; margin-bottom: 12px!important; }
+            
+            th { font-size: 9.5px!important; padding: 5px!important; }
+            td { font-size: 9.5px!important; padding: 4px!important; word-break: break-word!important; }
+            input, select, textarea, .input-cell, #txt-terminos { display: none!important; }
+            
+            .numero-gre-input { display: block !important; border: none !important; color: #ff4d4d !important; font-weight: 800 !important; background: transparent !important; }
+            .input-firma-det { display: block !important; border: none !important; font-size: 8.5px !important; height: auto!important; }
+            .print-value-bridge { display: block!important; font-size: 9.5px!important; font-weight: 600!important; line-height: 1.2!important; white-space: pre-wrap!important; }
+            
+            .sunat-footer-summary { background: #fff!important; border: 1px solid #000!important; padding: 10px!important; page-break-inside: avoid!important; }
+            .bloque-firma { min-height: 160px !important; }
+            .sello-visto-bueno-container { display: block !important; }
+            .footer-premium-brand { page-break-inside: avoid!important; margin-top: 10px!important; background-color: #f1f5f9!important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="web-control-panel">
+        <div><strong>GRUPO ECOROCK — Consola Operativa Remitente</strong></div>
+        <div class="panel-actions-group">
+            <button class="btn btn-save-print" onclick="ejecutarFlujoGuardarEImprimir()">💾 Guardar e Imprimir</button>
+            <button class="btn btn-print" onclick="sincronizarTextosYEjecutarPrint()">📥 Exportar PDF</button>
+        </div>
+    </div>
+
+    <!-- CANVAS GUÍA DE REMISIÓN A4 -->
+    <div class="page-a4">
+        <div>
+            <!-- ENCABEZADO RESTAURADO EXACTAMENTE AL ANTERIOR -->
+            <div class="header-canvas">
+                <div class="brand-box">
+                    <h1>GRUPO ECOROCK S.A.C.</h1>
+                    <p><strong>CONCRETO PREMEZCLADO DE ALTA RESISTENCIA</strong></p>
+                    <p>Planta Concreto: Psj. Quiñónez N° 78 - Chilca - Huancayo - Junín</p>
+                    <p>Contacto Ventas: 977 597 194 / 944 417 815 | ecorock.ventas@gmail.com</p>
+                </div>
+                <div class="sunat-ruc-box">
+                    <h2>RUC: 20615944298</h2>
+                    <div class="title-gre">GUÍA DE REMISIÓN ELECTRÓNICA REMITENTE</div>
+                    <input type="text" id="lbl-correlativo" class="numero-gre-input" value="T001-00000002">
+                </div>
+            </div>
+
+            <!-- SELECCIÓN RÁPIDA DE PROVEEDOR -->
+            <div class="selector-proveedor-container">
+                <div class="selector-proveedor-title">🔍 Selector Rápido Proveedor</div>
+                <input type="text" id="txt-search-prov-live" class="selector-proveedor-input" placeholder="Escribe razón social o RUC para buscar..." oninput="filtrarTarjetasProveedores(this.value)">
+                <div class="selector-proveedor-grid" id="container-tarjetas-proveedores"></div>
+            </div>
+
+            <div class="grid-datos">
+                <div class="card-datos">
+                    <h3>Configuración del Traslado</h3>
+                    <div class="form-group">
+                        <label>Motivo de Traslado (SUNAT)</label>
+                        <select id="cmb-motivo">
+                            <option value="01" selected>Venta</option>
+                            <option value="02">Compra</option>
+                            <option value="04">Traslado establecimientos</option>
+                        </select>
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Modalidad de Transporte</label>
+                        <select id="cmb-modalidad">
+                            <option value="01" selected>Transporte Privado (Unidades Ecorock)</option>
+                            <option value="02">Transporte Público</option>
+                        </select>
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de Emisión</label>
+                        <input type="date" id="txt-fecha">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Peso Bruto Total (KG)</label>
+                        <input type="number" id="txt-peso-total" value="18500">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                </div>
+
+                <div class="card-datos">
+                    <h3>Datos del Destinatario (Cliente)</h3>
+                    <div class="form-group">
+                        <label>Tipo Doc. Identidad</label>
+                        <select id="cmb-tipo-doc">
+                            <option value="6" selected>RUC (Persona Jurídica)</option>
+                            <option value="1">DNI (Persona Natural)</option>
+                        </select>
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Documento</label>
+                        <div style="display:flex; gap:6px; width: 100%;">
+                            <input type="text" id="txt-ruc" value="20605342981" oninput="filtrarClientesDropdown(this.value, 'doc')">
+                            <button class="btn" id="btn-buscar-ruc" style="background:#f59e0b; color:#fff; font-size:9px; padding:2px 6px; white-space:nowrap;" onclick="copiarYConsultarSunat()">🔍 Consulta SUNAT</button>
+                        </div>
+                        <div id="dropdown-clientes" class="db-autocomplete-dropdown"></div>
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Razón Social / Denominación</label>
+                        <input type="text" id="txt-razon" value="DCS GROUP S.A.C." oninput="filtrarClientesDropdown(this.value, 'razon')">
+                        <div id="dropdown-razon" class="db-autocomplete-dropdown"></div>
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Documento Asociado</label>
+                        <input type="text" id="txt-doc-ref" value="F001-00004815">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                </div>
+
+                <!-- BLOQUES AJUSTADOS COMPACTOS -->
+                <div class="full-width-group">
+                    <label style="font-size: 8.5px; font-weight: 700; color: #475569;">📍 Punto de Partida</label>
+                    <input type="text" id="txt-punto-partida" class="input-cell" style="background:#fff; border:1px solid #cbd5e1; border-radius:4px; padding: 3px 6px;" value="Psj. Quiñónez N° 78 - Chilca, Huancayo, Junín">
+                    <div class="print-value-bridge">-</div>
+                </div>
+
+                <div class="full-width-group">
+                    <label style="font-size: 8.5px; font-weight: 700; color: #475569;">🏁 Punto de Llegada / Proyecto</label>
+                    <textarea id="txt-proyecto" style="width:100%; min-height:24px; font-size:10px; font-weight:600; padding:2px 4px; border:1px solid #cbd5e1; border-radius:4px; resize: none; line-height: 1.2;">WESTFALIA FRUIT - CONSTRUCCIÓN INDUSTRIAL Y PAVIMENTACIÓN DE ALTA RESISTENCIA EN PLATAFORMA CENTRAL, JUNÍN</textarea>
+                    <div class="print-value-bridge">-</div>
+                </div>
+            </div>
+
+            <!-- Estructura Logística Vehicular Ajustada -->
+            <div class="grid-datos" style="margin-top:0;">
+                <div class="card-datos" style="grid-column: 1 / span 2; padding: 6px 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                        <h3 style="margin:0;">🚚 Logística vehicular / Chofer y Trazabilidad de Mixer</h3>
+                        <button class="btn btn-add" id="btn-mixer-trigger" style="font-size: 9px; padding: 1px 5px; margin: 0;" onclick="registrarOModificarMixer()">➕ Mixer</button>
+                    </div>
+                    <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:8px;">
+                        <div class="form-group">
+                            <label>Cod Mixer</label>
+                            <select id="txt-cod-mixer" style="color:var(--alert-red); font-weight: bold; padding: 2px;" onchange="ejecutarAutocompletadoMixer(this.value)">
+                                <option value="">-- Seleccionar --</option>
+                            </select>
+                            <div class="print-value-bridge">-</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Placa Vehículo</label>
+                            <input type="text" id="txt-placa-mixer" value="W7V-894">
+                            <div class="print-value-bridge">-</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Licencia de Conducir</label>
+                            <input type="text" id="txt-licencia-chofer" value="Q20615944-A">
+                            <div class="print-value-bridge">-</div>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Nombre del Conductor Asignado</label>
+                            <input type="text" id="txt-operador-mixer" value="Juan Quispe M.">
+                            <div class="print-value-bridge">-</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Código Precinto</label>
+                            <input type="text" id="txt-precinto" value="E-94819-A">
+                            <div class="print-value-bridge">-</div>
+                        </div>
+                        <div class="form-group"><label>Hora Salida</label><input type="text" id="hora-salida" placeholder="hh:mm AM" maxlength="8"><div class="print-value-bridge">-</div></div>
+                        <div class="form-group"><label>Hora Llegada</label><input type="text" id="hora-llegada" placeholder="hh:mm AM" maxlength="8"><div class="print-value-bridge">-</div></div>
+                        <div class="form-group"><label>Inicio Descarga</label><input type="text" id="inicio-descarga" placeholder="hh:mm AM" maxlength="8"><div class="print-value-bridge">-</div></div>
+                        <div class="form-group"><label>Fin Descarga</label><input type="text" id="fin-descarga" placeholder="hh:mm AM" maxlength="8"><div class="print-value-bridge">-</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOOLBAR MAESTRO -->
+            <div class="tabla-quick-toolbar">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <label style="font-size: 9.5px; font-weight: 800; color: var(--primary-color);">Fórmula:</label>
+                    <select id="cmb-tabla-formula" style="font-size: 10px; padding: 2px 4px; border-radius: 4px; font-weight: 600;"></select>
+                    <button class="btn" style="background: var(--primary-color); color: white; padding: 2px 6px; font-size: 9.5px;" onclick="inyectarFormulaATabla()">⚡ Inyectar</button>
+                </div>
+                <button class="btn btn-add" style="margin:0; padding: 2px 6px; font-size:9.5px;" onclick="agregarFilaBienes()">➕ Fila Vacía</button>
+            </div>
+
+            <table id="tabla-bienes">
+                <thead>
+                    <tr>
+                        <th style="width: 6%;">Item</th>
+                        <th style="width: 14%;">Código</th>
+                        <th style="width: 49%;">Descripción Detallada del Concreto / Suministro</th>
+                        <th style="width: 11%;" class="text-center">U.M.</th>
+                        <th style="width: 12%;" class="text-right">Cant m³</th>
+                        <th class="btn-action-row" style="width: 8%;">X</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="lema-container">
+                <div>¡¡CANTIDAD EXACTA, ENTREGA PUNTUAL Y RESISTENCIA GARANTIZADA BAJO CERTIFICACIÓN DE LABORATORIO!!</div>
+            </div>
+
+            <!-- SECCIÓN OBSERVACIONES -->
+            <div class="form-group">
+                <h3 style="font-size:9px; color:var(--primary-color); text-transform:uppercase; margin-bottom:1px; font-weight:800;">Observaciones del Remitente</h3>
+                <textarea id="txt-terminos" style="width:100%; height:88px; font-size:8.5px; padding:2px 4px; border:1px solid #cbd5e1; border-radius:4px; color:#475569; resize: none; line-height: 1.2;">1. El concreto premezclado suministrado cumple estrictamente con el Slump y el diseño estructural estipulado.
+2. Descarga controlada: El tiempo máximo de permanencia en obra de la unidad mixer es regulado bajo norma técnica.</textarea>
+                <div class="print-value-bridge" style="font-size: 8.5px; color:#1e293b; border: 1px dashed #cbd5e1; padding: 4px; background: #fff;"></div>
+            </div>
+
+            <!-- APARTADO DE FIRMAS OPTIMIZADO -->
+            <div class="sunat-footer-summary">
+                <div class="container-firmas">
+                    <div class="bloque-firma">
+                        <input type="text" id="txt-firma-op-nombre" class="input-firma-det" value="JUAN QUISPE M.">
+                        <input type="text" id="txt-firma-op-lic" class="input-firma-det" value="LIC: Q20615944-A">
+                        <input type="text" class="input-firma-det" placeholder="Empresa Transporte / Cargo">
+                        <input type="text" class="input-firma-det" placeholder="Fecha y Hora de Retiro">
+                        <div class="linea-firma"></div>
+                        <div class="texto-firma">Firma Operador Mixer</div>
+                    </div>
+                    <div class="bloque-firma">
+                        <input type="text" id="txt-firma-cli-nombre" class="input-firma-det" placeholder="Nombre Autorizado">
+                        <input type="text" id="txt-firma-cli-dni" class="input-firma-det" placeholder="DNI / Identificación">
+                        <input type="text" class="input-firma-det" placeholder="Cargo / Área Recibe">
+                        <input type="text" class="input-firma-det" placeholder="Fecha y Hora Conclusión">
+                        <div class="linea-firma"></div>
+                        <div class="texto-firma">Firma del Cliente</div>
+                    </div>
+                    <div class="bloque-firma" id="area-despachador">
+                        <!-- El contenedor del sello ahora se sitúa inmediatamente arriba de la línea discontinua -->
+                        <div class="sello-visto-bueno-container" id="sello-visto-bueno">
+                            <img id="img-sello" src="visto bueno sello.png" alt="Sello Visto Bueno">
+                            <!-- Botones dinámicos perfectamente centrados en la imagen del sello -->
+                            <div class="sello-actions-panel">
+                                <button class="btn" style="background:#10b981; color:white; font-size:7px; padding:2px 4px;" onclick="alternarSelloModo()">Sello</button>
+                                <input type="file" id="file-sello" accept="image/*" style="display:none" onchange="procesarSelloPersistente(event)">
+                                <button class="btn" style="background:#3b82f6; color:white; font-size:7px; padding:2px 4px;" onclick="document.getElementById('file-sello').click()">Subir</button>
+                            </div>
+                        </div>
+                        <input type="text" class="input-firma-det" placeholder="Supervisor Despacho">
+                        <input type="text" class="input-firma-det" placeholder="Control de Calidad / Planta">
+                        <div class="linea-firma"></div>
+                        <div class="texto-firma">Despachador Sello/Gerencia</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIE DE PÁGINA CORPORATIVO CON RELLENO GRIS SUAVE -->
+            <div class="footer-premium-brand">
+                <div class="line1">EN ECOROCK, CONSTRUIMOS MÁS QUE ESTRUCTURAS: CONSTRUIMOS CONFIANZA.</div>
+                <div class="line2">Planta Tecnificada de Concreto Premezclado y Logística de Ingeniería</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONSOLAS BASES DE DATOS EXTERNAS -->
+    <div class="external-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 10px;">
+            <h2 style="margin:0;">🛠️ Maestro de Diseños de Mezcla</h2>
+            <button class="btn" style="background:#10b981; color:white; font-size:10px; padding:4px 12px;" onclick="guardarOActualizarFormulaMaestra()">💾 Registrar / Actualizar Fórmula</button>
+        </div>
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px; background:#f8fafc; padding:12px; border-radius:6px; margin-bottom:10px;">
+            <div class="form-group">
+                <label>Seleccionar Fórmula Patrón</label>
+                <select id="cmb-formula-maestra" onchange="cargarFormulaEnConsolaExterna(this.value)"></select><button class="btn btn-anular" onclick="eliminarFormulaSeleccionada()">🗑 Eliminar</button>
+            </div>
+            <div class="form-group">
+                <label>Resistencia Suministrada</label>
+                <input type="text" id="txt-resistencia-f">
+            </div>
+            <div class="form-group">
+                <label>Slump / Asentamiento</label>
+                <input type="text" id="txt-slump-f">
+            </div>
+            <div class="form-group">
+                <label>Volumen (m³)</label>
+                <input type="number" id="txt-volumen-f" value="6.00" step="0.50" onchange="this.value = parseFloat(this.value).toFixed(2)">
+            </div>
+            <div class="form-group" style="grid-column: span 4;">
+                <label>Descripción Detallada de la Mezcla Seleccionada (Editable)</label>
+                <input type="text" id="txt-descripcion-f" style="width: 100%;">
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 10px; margin-top:15px;">
+            <h2 style="margin:0;">🏢 Catálogo Maestro de Proveedores Logísticos</h2>
+            <button class="btn" style="background:#3b82f6; color:white; font-size:10px; padding:4px 12px;" onclick="guardarOActualizarProveedor()">💾 Registrar / Actualizar Proveedor</button>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 2fr 2fr; gap: 12px; background:#f8fafc; padding:12px; border-radius:6px;">
+            <div class="form-group">
+                <label>RUC Proveedor</label>
+                <input type="text" id="txt-prov-ruc" placeholder="Ej. 20609892677">
+            </div>
+            <div class="form-group">
+                <label>Razón Social del Proveedor</label>
+                <input type="text" id="txt-prov-razon" placeholder="Ej. GRUPO ECOANDINA S.A.C.">
+            </div>
+            <div class="form-group">
+                <label>Punto de Llegada Predeterminado</label>
+                <input type="text" id="txt-prov-destino" placeholder="Ej. PROYECTO ECOANDINA CENTRAL - JUNIN">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA CORES ---
+        let dbClientes = JSON.parse(localStorage.getItem('ecorock_db_clientes')) || [
+            { doc: "20605342981", razon: "DCS GROUP S.A.C." }
+        ];
+
+        let dbMixers = JSON.parse(localStorage.getItem('ecorock_db_mixers')) || [
+            { cod: "MIX-01", placa: "W7V-894", licencia: "Q20615944-A", operador: "Juan Quispe M." },
+            { cod: "MIX-02", placa: "B5X-912", licencia: "N41526374-B", operador: "Carlos Mendoza R." }
+        ];
+
+        let dbFormulas = JSON.parse(localStorage.getItem('ecorock_db_formulas')) || [
+            { id: "210", codProd: "CONC-210", resistencia: "210 kg/cm²", slump: "4\"", desc: "CONCRETO PREMEZCLADO f'c 210 kg/cm² - SLUMP 4\" AGREGADO 1/2\"" },
+            { id: "280", codProd: "CONC-280", resistencia: "280 kg/cm²", slump: "3.5\"", desc: "CONCRETO PREMEZCLADO f'c 280 kg/cm² - SLUMP 3.5\" AGREGADO 3/4\"" }
+        ];
+
+        let dbProveedores = JSON.parse(localStorage.getItem('ecorock_db_proveedores')) || [
+            { ruc: "20609892677", razon: "GRUPO ECOANDINA S.A.C.", destino: "OBRA ECOANDINA - ALMACÉN CENTRAL JUNÍN" },
+            { ruc: "20608739042", razon: "SERVICIOS MULTIPLES JAFECA S.A.C.", destino: "PROYECTO JAFECA - INFRAESTRUCTURA URBANA" },
+            { ruc: "10200840513", razon: "MEJIA ATAYPOMA NERY", destino: "PLANTA MEJIA - ZONA INDUSTRIAL" },
+            { ruc: "20607761311", razon: "SOCIO CONSTRUCTOR SOCIEDAD ANONIMA CERRADA", destino: "CONSTRUCCIÓN SOCIO PAVIMENTOS - LOTE 4" }
+        ];
+
+        let selloModo = "interno";
+
+        window.onload = function() {
+            document.getElementById('txt-fecha').value = new Date().toISOString().substring(0, 10);
+            actualizarSelectMixers();
+            actualizarSelectFormulas();
+            renderizarTarjetasProveedores();
+            agregarFilaBienes();
+            
+            if(dbFormulas.length > 0) {
+                document.getElementById('cmb-formula-maestra').value = dbFormulas[0].id;
+                cargarFormulaEnConsolaExterna(dbFormulas[0].id);
+            }
+            // Muestra interactiva de sello activada por defecto en entorno web
+            document.getElementById('sello-visto-bueno').style.display = 'block';
+            if(localStorage.getItem('ecorock_user_sello')) {
+                selloModo = "usuario";
+                document.getElementById('img-sello').src = localStorage.getItem('ecorock_user_sello');
+            }
+        };
+
+        function renderizarTarjetasProveedores(lista = dbProveedores) {
+            const container = document.getElementById('container-tarjetas-proveedores');
+            container.innerHTML = '';
+            lista.slice(0, 4).forEach((p) => {
+                const card = document.createElement('div');
+                card.className = 'proveedor-card-btn';
+                card.innerHTML = `
+                    <div class="p-name" title="${p.razon}">${p.razon}</div>
+                    <div class="p-ruc">RUC: ${p.ruc}</div>
+                    <button class="btn-delete-prov" title="Borrar" onclick="eliminarProveedorBaseDatos(event, '${p.ruc}')">❌</button>
+                `;
+                card.onclick = function(e) {
+                    if(!e.target.classList.contains('btn-delete-prov')) {
+                        seleccionarProveedorLogica(p);
+                    }
+                };
+                container.appendChild(card);
+            });
+        }
+
+        function eliminarProveedorBaseDatos(event, ruc) {
+            event.stopPropagation();
+            if(confirm(`¿Desea borrar los datos de este proveedor (${ruc})?`)) {
+                dbProveedores = dbProveedores.filter(p => p.ruc !== ruc);
+                localStorage.setItem('ecorock_db_proveedores', JSON.stringify(dbProveedores));
+                filtrarTarjetasProveedores(document.getElementById('txt-search-prov-live').value);
+            }
+        }
+
+        function filtrarTarjetasProveedores(valor) {
+            if(!valor) { renderizarTarjetasProveedores(dbProveedores); return; }
+            const filtered = dbProveedores.filter(p => p.ruc.includes(valor) || p.razon.toUpperCase().includes(valor.toUpperCase()));
+            renderizarTarjetasProveedores(filtered);
+        }
+
+        function seleccionarProveedorLogica(p) {
+            document.getElementById('cmb-tipo-doc').value = "6";
+            document.getElementById('txt-ruc').value = p.ruc;
+            document.getElementById('txt-razon').value = p.razon;
+            document.getElementById('txt-proyecto').value = p.destino || `PROYECTO INTEGRAL DE INFRAESTRUCTURA - ${p.razon}`;
+            document.getElementById('txt-firma-cli-nombre').value = p.razon.substring(0, 25);
+            document.getElementById('txt-firma-cli-dni').value = "RUC: " + p.ruc;
+        }
+
+        function copiarYConsultarSunat() {
+            const numeroDoc = document.getElementById('txt-ruc').value.trim();
+            if(!numeroDoc) { alert("Ingrese un Número de Documento."); return; }
+            navigator.clipboard.writeText(numeroDoc).then(() => {
+                window.open('https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/FrameCriterioBusquedaWeb.jsp', '_blank');
+            });
+        }
+
+        function guardarOActualizarProveedor() {
+            const ruc = document.getElementById('txt-prov-ruc').value.trim();
+            const razon = document.getElementById('txt-prov-razon').value.trim().toUpperCase();
+            const destino = document.getElementById('txt-prov-destino').value.trim().toUpperCase();
+            if(!ruc || !razon) { alert("Complete RUC y Razón Social."); return; }
+            
+            const idx = dbProveedores.findIndex(p => p.ruc === ruc);
+            if(idx > -1) { dbProveedores[idx].razon = razon; dbProveedores[idx].destino = destino; } 
+            else { dbProveedores.unshift({ ruc, razon, destino }); }
+            localStorage.setItem('ecorock_db_proveedores', JSON.stringify(dbProveedores));
+            renderizarTarjetasProveedores();
+            alert("Proveedor guardado maestro.");
+        }
+
+        function filtrarClientesDropdown(valor, campo) {
+            const dropDoc = document.getElementById('dropdown-clientes');
+            const dropRazon = document.getElementById('dropdown-razon');
+            dropDoc.innerHTML = ''; dropRazon.innerHTML = '';
+            dropDoc.style.display = 'none'; dropRazon.style.display = 'none';
+            if(!valor) return;
+
+            const filtrados = dbClientes.filter(c => c.doc.includes(valor) || c.razon.toUpperCase().includes(valor.toUpperCase()));
+            if(filtrados.length > 0) {
+                const target = (campo === 'doc') ? dropDoc : dropRazon;
+                target.style.display = 'block';
+                filtrados.forEach(c => {
+                    const item = document.createElement('div');
+                    item.className = 'db-autocomplete-item';
+                    item.innerText = `${c.doc} - ${c.razon}`;
+                    item.onclick = function() {
+                        document.getElementById('txt-ruc').value = c.doc;
+                        document.getElementById('txt-razon').value = c.razon;
+                        dropDoc.style.display = 'none'; dropRazon.style.display = 'none';
+                    };
+                    target.appendChild(item);
+                });
+            }
+        }
+
+        function actualizarSelectMixers() {
+            const select = document.getElementById('txt-cod-mixer');
+            select.innerHTML = '<option value="">-- Seleccionar --</option>';
+            dbMixers.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m.cod; opt.innerText = `${m.cod} (${m.placa})`;
+                select.appendChild(opt);
+            });
+            select.value = "MIX-01";
+            ejecutarAutocompletadoMixer("MIX-01");
+        }
+
+        function ejecutarAutocompletadoMixer(cod) {
+            const mixer = dbMixers.find(m => m.cod === cod);
+            if(mixer) {
+                document.getElementById('txt-placa-mixer').value = mixer.placa;
+                document.getElementById('txt-licencia-chofer').value = mixer.licencia;
+                document.getElementById('txt-operador-mixer').value = mixer.operador;
+                document.getElementById('txt-firma-op-nombre').value = mixer.operador.toUpperCase();
+                document.getElementById('txt-firma-op-lic').value = "LIC: " + mixer.licencia.toUpperCase();
+            }
+        }
+
+        function registrarOModificarMixer() {
+            const cod = prompt("Código de Mixer (Ejm: MIX-03):").toUpperCase().trim();
+            if(!cod) return;
+            const ex = dbMixers.find(m => m.cod === cod);
+            const placa = prompt("Placa del Vehículo:", ex ? ex.placa : "");
+            const licencia = prompt("Licencia de Conducir:", ex ? ex.licencia : "");
+            const operador = prompt("Nombre del Conductor:", ex ? ex.operador : "");
+            if(!placa || !operador) return;
+
+            if(ex) { ex.placa = placa.toUpperCase(); ex.licencia = licencia.toUpperCase(); ex.operador = operador; }
+            else { dbMixers.push({ cod, placa: placa.toUpperCase(), licencia: licencia.toUpperCase(), operador }); }
+
+            localStorage.setItem('ecorock_db_mixers', JSON.stringify(dbMixers));
+            actualizarSelectMixers();
+            document.getElementById('txt-cod-mixer').value = cod;
+            ejecutarAutocompletadoMixer(cod);
+        }
+
+        function alternarSelloModo() {
+            const img = document.getElementById('img-sello');
+            if(selloModo === "interno") {
+                const c = localStorage.getItem('ecorock_user_sello');
+                if(c) { img.src = c; selloModo = "usuario"; } else { alert("Sello por defecto activo. Cargue uno personalizado."); }
+            } else {
+                img.src = "visto bueno sello.png"; selloModo = "interno";
+            }
+        }
+
+        function procesarSelloPersistente(event) {
+            const r = new FileReader();
+            r.onload = function() {
+                localStorage.setItem('ecorock_user_sello', r.result);
+                document.getElementById('img-sello').src = r.result;
+                selloModo = "usuario";
+            };
+            if(event.target.files[0]) r.readAsDataURL(event.target.files[0]);
+        }
+
+        function actualizarSelectFormulas() {
+            const ext = document.getElementById('cmb-formula-maestra');
+            const tab = document.getElementById('cmb-tabla-formula');
+            ext.innerHTML = '<option value="NEW_REG">[+ Añadir Nueva Fórmula]</option>';
+            tab.innerHTML = '';
+            dbFormulas.forEach(f => {
+                let o1 = document.createElement('option'); o1.value = f.id; o1.innerText = `f'c ${f.resistencia}`;
+                let o2 = document.createElement('option'); o2.value = f.id; o2.innerText = `f'c ${f.resistencia}`;
+                ext.appendChild(o1); tab.appendChild(o2);
+            });
+        }
+
+        function cargarFormulaEnConsolaExterna(id) {
+            if (id === "NEW_REG") {
+                document.getElementById('txt-resistencia-f').value = '';
+                document.getElementById('txt-slump-f').value = '';
+                document.getElementById('txt-descripcion-f').value = '';
+                return;
+            }
+            const f = dbFormulas.find(item => item.id === id);
+            if(f) {
+                document.getElementById('txt-resistencia-f').value = f.resistencia;
+                document.getElementById('txt-slump-f').value = f.slump;
+                document.getElementById('txt-descripcion-f').value = f.desc;
+            }
+        }
+
+        
+function eliminarFormulaSeleccionada(){
+ const id=document.getElementById('cmb-formula-maestra').value;
+ if(id==='NEW_REG'){alert('Seleccione una fórmula.');return;}
+ if(!confirm('¿Eliminar fórmula?')) return;
+ dbFormulas=dbFormulas.filter(f=>f.id!==id);
+ localStorage.setItem('ecorock_db_formulas',JSON.stringify(dbFormulas));
+ actualizarSelectFormulas();
+ document.getElementById('cmb-formula-maestra').value='NEW_REG';
+ cargarFormulaEnConsolaExterna('NEW_REG');
+}
+
+function guardarOActualizarFormulaMaestra() {
+            const idSel = document.getElementById('cmb-formula-maestra').value;
+            const res = document.getElementById('txt-resistencia-f').value.trim();
+            const slump = document.getElementById('txt-slump-f').value.trim();
+            const desc = document.getElementById('txt-descripcion-f').value.trim();
+            if(!res || !desc) return;
+            
+            if (idSel === "NEW_REG") {
+                const nuevoId = Date.now().toString();
+                dbFormulas.push({ id: nuevoId, codProd: "CONC-CUST", resistencia: res, slump, desc });
+            } else {
+                const f = dbFormulas.find(item => item.id === idSel);
+                if(f) { f.resistencia = res; f.slump = slump; f.desc = desc; }
+            }
+            localStorage.setItem('ecorock_db_formulas', JSON.stringify(dbFormulas));
+            actualizarSelectFormulas();
+            alert("Diseño guardado.");
+        }
+
+        function inyectarFormulaATabla() {
+            const f = dbFormulas.find(item => item.id === document.getElementById('cmb-tabla-formula').value);
+            let vol = parseFloat(document.getElementById('txt-volumen-f').value || 6).toFixed(2);
+            if(!f) return;
+
+            const tbody = document.querySelector('#tabla-bienes tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="text-center font-bold">${tbody.rows.length + 1}</td>
+                <td><input type="text" class="input-cell cell-codigo" value="${f.codProd}"><div class="print-value-bridge"></div></td>
+                <td><input type="text" class="input-cell cell-desc" style="width:100%;" value="${(document.getElementById('txt-descripcion-f').value!==''?document.getElementById('txt-descripcion-f').value:f.desc).replace(/"/g, '&quot;')}"><div class="print-value-bridge"></div></td>
+                <td><input type="text" class="input-cell text-center" value="M3"><div class="print-value-bridge"></div></td>
+                <td><input type="number" class="input-cell text-right cell-cant" value="${vol}" step="0.50" onchange="this.value = parseFloat(this.value).toFixed(2)"><div class="print-value-bridge"></div></td>
+                <td class="btn-action-row text-center"><button class="btn btn-anular" style="background:#ef4444; padding:2px 6px;" onclick="this.closest('tr').remove(); reordenarItems();">X</button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function agregarFilaBienes() {
+            const tbody = document.querySelector('#tabla-bienes tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="text-center font-bold">${tbody.rows.length + 1}</td>
+                <td><input type="text" class="input-cell cell-codigo" value="CONC-210"><div class="print-value-bridge"></div></td>
+                <td><input type="text" class="input-cell cell-desc" style="width:100%;" value="CONCRETO PREMEZCLADO f'c 210 kg/cm²"><div class="print-value-bridge"></div></td>
+                <td><input type="text" class="input-cell text-center" value="M3"><div class="print-value-bridge"></div></td>
+                <td><input type="number" class="input-cell text-right cell-cant" value="6.00" step="0.50" onchange="this.value = parseFloat(this.value).toFixed(2)"><div class="print-value-bridge"></div></td>
+                <td class="btn-action-row text-center"><button class="btn btn-anular" style="background:#ef4444; padding:2px 6px;" onclick="this.closest('tr').remove(); reordenarItems();">X</button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function reordenarItems() {
+            document.querySelectorAll('#tabla-bienes tbody tr').forEach((row, idx) => { row.cells[0].innerText = idx + 1; });
+        }
+
+        function sincronizarTextosYEjecutarPrint() {
+            document.querySelectorAll('.form-group, .full-width-group, td').forEach(el => {
+                const input = el.querySelector('input, select, textarea');
+                const bridge = el.querySelector('.print-value-bridge');
+                if(input && bridge) {
+                    if (input.classList.contains('cell-cant')) {
+                        bridge.innerText = parseFloat(input.value || 0).toFixed(2);
+                    } else {
+                        bridge.innerText = input.tagName === 'SELECT' ? (input.options[input.selectedIndex]?.text || '') : input.value;
+                    }
+                }
+            });
+            window.print();
+        }
+
+        function ejecutarFlujoGuardarEImprimir() {
+            sincronizarTextosYEjecutarPrint();
+        }
+    </script>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ const h=document.getElementById('hora-salida');
+ if(h && !h.value){
+   const d=new Date();
+   let hr=d.getHours(),m=d.getMinutes().toString().padStart(2,'0');
+   const ap=hr>=12?'PM':'AM';
+   hr=hr%12; if(hr==0) hr=12;
+   h.value=String(hr).padStart(2,'0')+':'+m+' '+ap;
+ }
+});
+</script>
+</body>
+</html>
+<style>#tabla-bienes th:nth-child(4),#tabla-bienes th:nth-child(5),#tabla-bienes td:nth-child(4),#tabla-bienes td:nth-child(5){text-align:center!important;vertical-align:middle!important;}#tabla-bienes td:nth-child(4) input,#tabla-bienes td:nth-child(5) input{text-align:center!important;}</style>

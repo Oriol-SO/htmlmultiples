@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.VENTA_ECOROCK_#1</title>
+    <style>
+        :root {
+            --primary-color: #0a2540;
+            --accent-green: #70e000;
+            --dark-slate: #1e293b;
+            --border-color: #cbd5e1;
+            --light-bg: #f8fafc;
+            --alert-red: #dc2626;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: #cbd5e1; margin: 0; padding: 20px; color: #334155; }
+
+        /* Consola de Control Superior */
+        .web-control-panel {
+            max-width: 210mm;
+            margin: 0 auto 15px auto;
+            background: var(--dark-slate);
+            padding: 12px 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            gap: 10px;
+        }
+        
+        .panel-actions-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-print { background-color: #ef4444; color: white; }
+        .btn-print:hover { background-color: #dc2626; transform: translateY(-1px); }
+        .btn-save-print { background-color: #8b5cf6; color: white; }
+        .btn-save-print:hover { background-color: #7c3aed; transform: translateY(-1px); }
+        .btn-add { background-color: #10b981; color: white; margin-bottom: 8px; }
+        .btn-add:hover { background-color: #059669; }
+        .btn-save { background-color: #3b82f6; color: white; }
+        .btn-save:hover { background-color: #2563eb; }
+
+        /* Canvas A4 Estricto con Borde Perimetral Obligatorio de 1.00mm */
+        .page-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 10mm 12mm;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1.00mm solid var(--primary-color);
+            position: relative;
+        }
+
+        /* Identidad Visual Corporativa (Cabecera) */
+        .header-canvas {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+            padding: 14px 20px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 5px solid var(--accent-green);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .brand-box h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: 1.5px; }
+        .brand-box p { margin: 2px 0 0 0; font-size: 11px; color: #cbd5e1; font-weight: 600; letter-spacing: 0.5px; }
+        .info-header-box { text-align: right; font-size: 11px; line-height: 1.45; }
+
+        .document-title-strip {
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 0.5px;
+        }
+        
+        .correlativo-container {
+            text-align: right;
+            white-space: nowrap;
+            color: var(--alert-red);
+        }
+
+        /* Grillas y Formularios */
+        .grid-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+        .card-datos { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; }
+        .card-datos h3 { margin: 0 0 8px 0; font-size: 11px; color: var(--primary-color); text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; font-weight: 800; }
+
+        .form-group { display: flex; flex-direction: column; margin-bottom: 5px; position: relative; }
+        .form-group label { font-size: 9px; font-weight: 700; color: #475569; margin-bottom: 2px; text-transform: uppercase; }
+        .form-group input, .form-group select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 11px; background: #fff; }
+        
+        .full-width-group { grid-column: 1 / span 2; background: #f1f5f9; padding: 8px 12px; border-radius: 6px; border: 1px dashed #cbd5e1; position: relative; }
+        .proyecto-textarea { width: 100%; min-height: 38px; font-size: 11px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; color: #1e293b; resize: vertical; font-weight: 600; }
+
+        /* Tablas de Suministro Técnico */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        th { background-color: var(--primary-color) !important; color: white !important; font-size: 10px; padding: 6px 4px; border: 1px solid #1e293b; text-transform: uppercase; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td { border: 1px solid #cbd5e1; padding: 4px; font-size: 11px; position: relative; }
+        
+        .input-cell { width: 100%; border: 1px solid transparent; background: transparent; padding: 4px; font-size: 11px; color: #0f172a; }
+        .input-cell:focus { border-color: #3b82f6; background: #fff; outline: none; border-radius: 3px; }
+        
+        .text-center { text-align: center !important; }
+        .text-right { text-align: right !important; font-weight: 600; }
+        
+        /* Puentes estables de impresión */
+        .print-value-bridge { display: none; word-wrap: break-word; }
+
+        /* Bloque de Liquidación y Condiciones */
+        .comercial-summary-block { display: flex; justify-content: space-between; align-items: stretch; margin-top: 10px; gap: 12px; }
+        .table-condiciones { width: 55%; margin-top: 0; }
+        .table-condiciones td { padding: 6px 10px; font-size: 11px; background: #f8fafc; border: 1px solid #cbd5e1; }
+        .table-condiciones .condicion-label { font-weight: 700; color: #475569; width: 40%; background: #f1f5f9; text-transform: uppercase; }
+        .texto-fijo { color: #0f172a; font-weight: 600; background: #ffffff; }
+
+        /* Sección de Totales */
+        .totales-box { width: 42%; background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px 14px; border-radius: 4px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+        .totales-row { display: flex; justify-content: space-between; font-size: 11.5px; line-height: 1.3; }
+
+        .lema-container { text-align: center; margin: 10px 0; padding: 6px; border-top: 2px dashed var(--primary-color); border-bottom: 2px dashed var(--primary-color); font-weight: 800; color: var(--primary-color); font-size: 12px; background: #f7fee7 !important; letter-spacing: 0.5px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        /* Contenedores del Panel de Administración Local */
+        .external-container { max-width: 210mm; margin: 20px auto; background: #fff; padding: 18px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .external-container h2 { font-size: 13px; margin-top: 0; color: var(--dark-slate); border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; font-weight: 800; text-transform: uppercase; }
+
+        .footer-premium { border-top: 3px solid var(--primary-color); background-color: var(--light-bg); padding: 8px; margin-top: 10px; border-radius: 0 0 4px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .footer-textarea { width: 100%; border: 1px solid transparent; background: transparent; text-align: center; font-size: 10px; color: var(--primary-color); font-weight: 800; resize: none; text-transform: uppercase; }
+
+        /* ========================================================
+           REGLAS DE IMPRESIÓN AVANZADAS COMPLETAMENTE RESOLUTIVAS
+           ======================================================== */
+        @media print {
+            @page{size:A4 portrait;margin:2mm;}
+            body{margin:0!important;padding:0!important;background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+            .web-control-panel,.external-container,.btn-action-row,.btn-del,#btn-buscar-ruc{display:none!important;}
+            .page-a4{width:206mm!important;min-height:293mm!important;padding:2mm!important;border:none!important;box-shadow:none!important;overflow:visible!important;}
+            table{width:100%!important;table-layout:fixed!important;border-collapse:collapse!important;}
+            th{font-size:11px!important;padding:6px!important;}
+            td{font-size:11px!important;padding:5px!important;vertical-align:top!important;word-break:break-word!important;overflow-wrap:break-word!important;white-space:normal!important;}
+            input,select,textarea,.input-cell{display:none!important;}
+            .print-value-bridge{display:block!important;font-size:12px!important;font-weight:600!important;line-height:1.35!important;white-space:pre-wrap!important;word-break:break-word!important;overflow-wrap:break-word!important;min-height:18px!important;}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="web-control-panel">
+        <div><strong>ECOROCK ERP v3.0 — Sistema Avanzado de Impresión Síncrona</strong></div>
+        <div class="panel-actions-group">
+            <button class="btn btn-save-print" onclick="ejecutarFlujoGuardarEImprimir()">💾 Guardar en Historial e Imprimir</button>
+            <button class="btn btn-print" onclick="sincronizarTextosYEjecutarPrint()">📥 Exportar PDF / Vista Rápida</button>
+        </div>
+    </div>
+
+    <div class="page-a4">
+        <div>
+            <div class="header-canvas">
+                <div class="brand-box">
+                    <h1>ECOROCK</h1>
+                    <p>Resistencia que construye confianza</p>
+                </div>
+                <div class="info-header-box">
+                    <strong>RUC N°: 20615944298</strong><br>
+                    📍 Psj. Quiñónez N° 78 - Huancayo - Chilca<br>
+                    📞 977 597 194 / 944 417 815<br>
+                    ✉️ ecorock.ventas@gmail.com
+                </div>
+            </div>
+
+            <div class="document-title-strip">
+                <span>GUIA DE BOLETA DE VENTA</span>
+                <span class="correlativo-container">N° BOLETA: <span id="lbl-correlativo">#10-ECO-#</span></span>
+            </div>
+
+            <div class="grid-datos">
+                <div class="card-datos">
+                    <h3>Datos del Cliente / Obra</h3>
+                    <div class="form-group">
+                        <label>RUC / DNI Titular</label>
+                        <div style="display:flex; gap:6px; width: 100%;">
+                            <input type="text" id="txt-ruc" value="20605342981">
+                            <button class="btn" id="btn-buscar-ruc" style="background:var(--primary-color); color:#fff; font-size:9px;" onclick="buscarClienteSunat()">Buscar RUC</button>
+                        </div>
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Razón Social / Cliente</label>
+                        <input type="text" id="txt-razon" value="DCS GROUP S.A.C.">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ubicación Detallada (Distrito / Prov / Dep)</label>
+                        <input type="text" id="txt-ubicacion-cliente" value="Chilca - Huancayo - Junín">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                </div>
+
+                <div class="card-datos">
+                    <h3>Logística del Proveedor</h3>
+                    <div class="form-group">
+                        <label>Fecha de Procesamiento</label>
+                        <input type="date" id="txt-fecha">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Planta de Despacho Operativa</label>
+                        <input type="text" id="txt-planta" value="PLANTA CHILCA - HUANCAYO">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Asesor de Ventas Técnico</label>
+                        <input type="text" id="txt-asesor" value="ING. CENTRAL DE SERVICIOS">
+                        <div class="print-value-bridge">-</div>
+                    </div>
+                </div>
+
+                <div class="full-width-group">
+                    <label style="font-size: 9px; font-weight: 700; color: #475569; display: block; margin-bottom: 2px;">Proyecto / Destino</label>
+                    <textarea id="txt-proyecto" class="proyecto-textarea">WESTFALIA FRUIT - CONSTRUCCIÓN INDUSTRIAL Y PAVIMENTACIÓN DE ALTA RESISTENCIA EN PLATAFORMA CENTRAL</textarea>
+                    <div class="print-value-bridge">-</div>
+                </div>
+            </div>
+
+            <div class="btn-action-row">
+                <button class="btn btn-add" onclick="agregarFilaCotizacion()">➕ Añadir Mezcla / Servicio</button>
+            </div>
+            <table id="tabla-cotizacion">
+                <thead>
+                    <tr>
+                        <th style="width: 6%;">Item</th>
+                        <th style="width: 25%;">Concreto f'c (kg/cm²)</th>
+                        <th style="width: 18%;">Cemento Tipo</th>
+                        <th style="width: 11%;" class="text-center">Slump (*)</th>
+                        <th style="width: 12%;" class="text-center">Huso ASTM (")</th>
+                        <th style="width: 9%;" class="text-right">Vol (m³)</th>
+                        <th style="width: 9%;" class="text-right">P. Unit (S/.)</th>
+                        <th style="width: 10%;" class="text-right">Subtotal</th>
+                        <th class="btn-action-row" style="width: 4%;">X</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div class="comercial-summary-block">
+                <table class="table-condiciones">
+                    <tbody>
+                        <tr>
+                            <td class="condicion-label">Servicio de Bombeo:</td>
+                            <td class="texto-fijo">
+                                <select id="cmb-bombeo" style="width:100%; border:none; font-weight:bold;" onchange="calcularTotales()">
+                                    <option value="SI" selected>SI REQUERIDO</option>
+                                    <option value="NO">NO REQUERIDO</option>
+                                </select>
+                                <div class="print-value-bridge">-</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="condicion-label">Forma / Condición Pago:</td>
+                            <td class="texto-fijo" style="font-weight: 700; color: #0f172a;">
+                                Pago por adelantado / Depósito Efectivo o en Efectivo
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="condicion-label">Validez de Oferta:</td>
+                            <td class="texto-fijo" style="font-weight: 700; color: #0f172a;">
+                                7 días calendarios
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="totales-box">
+                    <div class="totales-row">
+                        <span>Subtotal Neto:</span>
+                        <span id="lbl-subtotal" style="font-weight:700;">S/. 0.00</span>
+                    </div>
+                    <div class="totales-row">
+                        <span>IGV (18.00%):</span>
+                        <span id="lbl-igv" style="font-weight:700;">S/. 0.00</span>
+                    </div>
+                    <div class="totales-row" style="font-weight:800; color:var(--alert-red); border-top: 1px dashed #cbd5e1; padding-top: 4px; font-size: 13px;">
+                        <span>COSTO TOTAL:</span>
+                        <span id="lbl-total">S/. 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lema-container">
+                ¡¡CANTIDAD EXACTA, ENTREGA PUNTUAL Y RESISTENCIA GARANTIZADA BAJO CERTIFICACIÓN DE LABORATORIO!!
+            </div>
+
+            <div class="btn-action-row">
+                <button class="btn btn-add" onclick="agregarFilaBanco()">➕ Registrar Cuenta de Depósito</button>
+            </div>
+            <table id="tabla-bancos">
+                <thead>
+                    <tr>
+                        <th class="text-center">Entidad Bancaria</th>
+                        <th class="text-center">Divisa</th>
+                        <th class="text-center">N° de Cuenta Corriente</th>
+                        <th class="text-center">Código Interbancario (CCI)</th>
+                        <th class="btn-action-row" style="width: 5%;">X</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div style="margin-top:10px;">
+                <h3 style="font-size:9px; color:var(--primary-color); text-transform:uppercase; margin-bottom:2px; font-weight:800;">Cláusulas Técnicas de Suministro</h3>
+                <textarea id="txt-terminos" style="width:100%; height:55px; font-size:9px; padding:6px; border:1px solid #cbd5e1; border-radius:4px; color:#475569;">
+1. PROGRAMACIÓN: Pedidos confirmados con 24 horas de anticipación en planta.
+2. CONTROL DE CALIDAD: Los ensayos se rigen bajo la norma NTP para probetas de concreto.
+3. ADITIVOS: Modificaciones químicas adicionales alterarán el precio neto unitario de la mezcla.</textarea>
+                <div class="print-value-bridge" style="font-size: 9px; color:#475569; border: 1px dashed #cbd5e1; padding: 6px; border-radius: 4px;">-</div>
+            </div>
+        </div>
+
+        <div class="footer-premium">
+            <textarea class="footer-textarea" id="txt-pie-pagina" rows="1">EN ECOROCK, CONSTRUIMOS MÁS QUE ESTRUCTURAS: CONSTRUIMOS CONFIANZA FUTURA.</textarea>
+            <div class="print-value-bridge text-center" style="font-size: 10px; color: var(--primary-color); font-weight: 800; text-align: center;">-</div>
+            <div style="font-size: 8px; color: #94a3b8; margin-top: 2px; text-transform: uppercase; font-weight: bold;">Planta Tecnificada de Concreto Premezclado y Logística de Ingeniería</div>
+        </div>
+    </div>
+
+    <div class="external-container">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2>🛠️ Fórmulas Maestras de Diseño de Mezclas (Auto-llenado Rápido)</h2>
+            <button class="btn btn-add btn-action-row" onclick="agregarFilaMaestro()">➕ Crear Nueva Fórmula en Base de Datos</button>
+        </div>
+        <table id="tabla-maestro">
+            <thead>
+                <tr>
+                    <th style="width:8%;">Item Id</th>
+                    <th>Denominación del Concreto</th>
+                    <th>Tipo de Cemento</th>
+                    <th class="text-center">Slump (*)</th>
+                    <th class="text-center">Huso ASTM</th>
+                    <th class="text-right">Precio x m³ (S/.)</th>
+                    <th style="width:6%;" class="text-center btn-action-row">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+            <h2>🚚 Catálogo Maestro de Unidades Mixer y Operadores (Autorrellenado)</h2>
+            <button class="btn btn-add btn-action-row" onclick="agregarFilaMaestroMixer()">➕ Registrar Unidad Mixer</button>
+        </div>
+        <table id="tabla-maestro-mixers">
+            <thead>
+                <tr>
+                    <th style="width:12%;">Código Unidad</th>
+                    <th>Identificación de Placa (Mixer)</th>
+                    <th>Nombre Completo del Operador asignado</th>
+                    <th style="width:6%;" class="text-center btn-action-row">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+            <h2>📋 Registro Histórico de Guías (Persistencia Local LocalStorage)</h2>
+            <button class="btn btn-save btn-action-row" onclick="guardarEnHistorialLocal()">💾 Archivar Guía Actual Manualmente</button>
+        </div>
+        <table id="tabla-historial">
+            <thead>
+                <tr>
+                    <th>Código Interno</th>
+                    <th>RUC del Comprador</th>
+                    <th>Razón Social / Obra</th>
+                    <th>Detalles del Destino</th>
+                    <th class="text-right">Total Facturado</th>
+                    <th style="width:6%;" class="text-center btn-action-row">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let correlativoGlobal = 2;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if(!document.getElementById('txt-fecha').value) {
+                document.getElementById('txt-fecha').value = new Date().toISOString().split('T')[0];
+            }
+            recuperarDatosLocal();
+
+            document.body.addEventListener('input', (e) => {
+                if (e.target && (e.target.matches('.input-cell') || e.target.matches('input') || e.target.matches('textarea') || e.target.matches('select'))) {
+                    vincularTextoEspejo(e.target);
+                    persistirTodo();
+                }
+            });
+            document.body.addEventListener('change', (e) => {
+                if (e.target && e.target.matches('select')) {
+                    vincularTextoEspejo(e.target);
+                    persistirTodo();
+                }
+            });
+        });
+
+        function formatMoneda(valor) {
+            return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(valor);
+        }
+
+        function corregirDecimales(inputNode) {
+            let val = parseFloat(inputNode.value) || 0;
+            inputNode.value = val.toFixed(2);
+        }
+
+        function vincularTextoEspejo(inputNode) {
+            if (!inputNode) return;
+            let contenedor = inputNode.closest('td') || inputNode.closest('.form-group') || inputNode.closest('.full-width-group') || inputNode.closest('.footer-premium') || inputNode.parentNode;
+            if (contenedor) {
+                const bridge = contenedor.querySelector('.print-value-bridge');
+                if (bridge) {
+                    if(inputNode.tagName === 'SELECT') {
+                        bridge.innerText = inputNode.options[inputNode.selectedIndex] ? inputNode.options[inputNode.selectedIndex].text : '-';
+                    } else {
+                        bridge.innerText = inputNode.value ? inputNode.value : '-';
+                    }
+                }
+            }
+        }
+
+        function sincronizarTextosYEjecutarPrint() {
+            document.querySelectorAll('input, textarea, select').forEach(node => {
+                vincularTextoEspejo(node);
+            });
+            calcularTotales();
+            window.print();
+        }
+
+        function ejecutarFlujoGuardarEImprimir() {
+            document.querySelectorAll('input, textarea, select').forEach(node => {
+                vincularTextoEspejo(node);
+            });
+            calcularTotales();
+            guardarEnHistorialLocal();
+            requestAnimationFrame(()=>{requestAnimationFrame(()=>{window.print();});});
+        }
+
+        function buscarClienteSunat() {
+            const ruc = document.getElementById('txt-ruc').value.trim();
+            if(ruc) {
+                navigator.clipboard.writeText(ruc).then(() => {
+                    alert("RUC [" + ruc + "] copiado al portapapeles. Validando en portal oficial...");
+                    window.open('https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/FrameCriterioBusquedaWeb.jsp', '_blank');
+                });
+            }
+        }
+
+        function agregarFilaCotizacion(data = {item:'', con:'', cem:'', slu:'', hus:'', vol:0, pun:0}) {
+            const tbody = document.querySelector('#tabla-cotizacion tbody');
+            const tr = document.createElement('tr');
+            let vVol = parseFloat(data.vol) || 0;
+            let vPun = parseFloat(data.pun) || 0;
+
+            tr.innerHTML = `
+                <td>
+                    <input type="text" class="input-cell text-center" style="font-weight:bold;" value="${data.item}" oninput="ejecutarAutocompletado(this)">
+                    <div class="print-value-bridge text-center" style="font-weight:bold;">${data.item}</div>
+                </td>
+                <td><input type="text" class="input-cell" value="${data.con}"><div class="print-value-bridge">${data.con}</div></td>
+                <td><input type="text" class="input-cell" value="${data.cem}"><div class="print-value-bridge">${data.cem}</div></td>
+                <td><input type="text" class="input-cell text-center" value="${data.slu}"><div class="print-value-bridge text-center">${data.slu}</div></td>
+                <td><input type="text" class="input-cell text-center" value="${data.hus}"><div class="print-value-bridge text-center">${data.hus}</div></td>
+                <td>
+                    <input type="number" class="input-cell text-right" step="0.50" value="${vVol.toFixed(2)}" onchange="corregirDecimales(this); calcularTotales();">
+                    <div class="print-value-bridge text-right">${vVol.toFixed(2)}</div>
+                </td>
+                <td>
+                    <input type="number" class="input-cell text-right" step="0.01" value="${vPun.toFixed(2)}" onchange="corregirDecimales(this); calcularTotales();">
+                    <div class="print-value-bridge text-right">${vPun.toFixed(2)}</div>
+                </td>
+                <td class="text-right" style="font-weight:700; color: #000;">0.00</td>
+                <td class="btn-del text-center"><button style="cursor:pointer; border:none; background:none;" onclick="eliminarFila(this)">❌</button></td>
+            `;
+            tbody.appendChild(tr);
+            tr.querySelectorAll('input').forEach(inp => vincularTextoEspejo(inp));
+            calcularTotales();
+        }
+
+        function ejecutarAutocompletado(inputNode) {
+            const criterio = inputNode.value.trim();
+            if(!criterio) return;
+            const filasMaestro = document.querySelectorAll('#tabla-maestro tbody tr');
+            const trDestino = inputNode.closest('tr');
+            const inputs = trDestino.querySelectorAll('input');
+            filasMaestro.forEach(fila => {
+                const itemM = fila.cells[0].querySelector('input').value.trim();
+                if(itemM === criterio) {
+                    inputs[1].value = fila.cells[1].querySelector('input').value;
+                    inputs[2].value = fila.cells[2].querySelector('input').value;
+                    inputs[3].value = fila.cells[3].querySelector('input').value; 
+                    inputs[4].value = fila.cells[4].querySelector('input').value; 
+                    inputs[6].value = parseFloat(fila.cells[5].querySelector('input').value).toFixed(2);
+                }
+            });
+            trDestino.querySelectorAll('input').forEach(inp => vincularTextoEspejo(inp));
+            calcularTotales();
+        }
+
+        function agregarFilaBanco(data = {banco:'', mon:'', cta:'', cci:''}) {
+            const tbody = document.querySelector('#tabla-bancos tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" class="input-cell text-center" value="${data.banco}"><div class="print-value-bridge text-center">${data.banco}</div></td>
+                <td><input type="text" class="input-cell text-center" value="${data.mon}"><div class="print-value-bridge text-center">${data.mon}</div></td>
+                <td><input type="text" class="input-cell text-center" value="${data.cta}"><div class="print-value-bridge text-center">${data.cta}</div></td>
+                <td><input type="text" class="input-cell text-center" value="${data.cci}"><div class="print-value-bridge text-center">${data.cci}</div></td>
+                <td class="btn-del text-center"><button style="cursor:pointer; border:none; background:none;" onclick="eliminarFila(this)">❌</button></td>
+            `;
+            tbody.appendChild(tr);
+            tr.querySelectorAll('input').forEach(inp => vincularTextoEspejo(inp));
+            persistirTodo();
+        }
+
+        function agregarFilaMaestro(data = {item:'', con:'', cem:'', slu:'', hus:'', pun:0}) {
+            const tbody = document.querySelector('#tabla-maestro tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" class="input-cell text-center" style="font-weight:bold;" value="${data.item}"></td>
+                <td><input type="text" class="input-cell" value="${data.con}"></td>
+                <td><input type="text" class="input-cell" value="${data.cem}"></td>
+                <td><input type="text" class="input-cell text-center" value="${data.slu}"></td>
+                <td><input type="text" class="input-cell text-center" value="${data.hus}"></td>
+                <td><input type="number" class="input-cell text-right" step="0.01" value="${(parseFloat(data.pun)||0).toFixed(2)}" onchange="corregirDecimales(this);"></td>
+                <td class="text-center btn-del"><button style="cursor:pointer; border:none; background:none;" onclick="eliminarFila(this)">❌</button></td>
+            `;
+            tbody.appendChild(tr);
+            persistirTodo();
+        }
+
+        function agregarFilaMaestroMixer(data = {codigo:'', placa:'', operador:''}) {
+            const tbody = document.querySelector('#tabla-maestro-mixers tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" class="input-cell text-center" style="font-weight:bold; color:var(--alert-red);" value="${data.codigo}"></td>
+                <td><input type="text" class="input-cell" value="${data.placa}"></td>
+                <td><input type="text" class="input-cell" value="${data.operador}"></td>
+                <td class="text-center btn-del"><button style="cursor:pointer; border:none; background:none;" onclick="eliminarFila(this)">❌</button></td>
+            `;
+            tbody.appendChild(tr);
+            persistirTodo();
+        }
+
+        function eliminarFila(btn) {
+            btn.closest('tr').remove();
+            calcularTotales();
+            persistirTodo();
+        }
+
+        function calcularTotales() {
+            let subtotal = 0;
+            document.querySelectorAll('#tabla-cotizacion tbody tr').forEach(fila => {
+                const inputs = fila.querySelectorAll('input');
+                const vol = parseFloat(inputs[5].value) || 0;
+                const unit = parseFloat(inputs[6].value) || 0;
+                const totalFila = vol * unit;
+                fila.cells[7].innerText = formatMoneda(totalFila);
+                subtotal += totalFila;
+            });
+            document.getElementById('lbl-subtotal').innerText = "S/. " + formatMoneda(subtotal);
+            document.getElementById('lbl-igv').innerText = "S/. " + formatMoneda(subtotal * 0.18);
+            document.getElementById('lbl-total').innerText = "S/. " + formatMoneda(subtotal * 1.18);
+        }
+
+        function guardarEnHistorialLocal() {
+            const codigo = `#10-ECO-${correlativoGlobal}`;
+            const ruc = document.getElementById('txt-ruc').value;
+            const razon = document.getElementById('txt-razon').value;
+            const proyecto = document.getElementById('txt-proyecto').value;
+            const total = document.getElementById('lbl-total').innerText;
+            const tbody = document.querySelector('#tabla-historial tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td><strong>${codigo}</strong></td><td>${ruc}</td><td>${razon}</td><td style="font-size:10px; color:#475569;">${proyecto}</td><td class="text-right" style="color:#059669; font-weight:bold;">${total}</td><td class="text-center btn-del"><button style="cursor:pointer; border:none; background:none;" onclick="eliminarFila(this)">❌</button></td>`;
+            tbody.appendChild(tr);
+            correlativoGlobal++;
+            document.getElementById('lbl-correlativo').innerText = `#10-ECO-${correlativoGlobal}`;
+            persistirTodo();
+        }
+
+        function persistirTodo() {
+            const appCache = {
+                ruc: document.getElementById('txt-ruc').value, razon: document.getElementById('txt-razon').value, ubicacionCliente: document.getElementById('txt-ubicacion-cliente').value, proyecto: document.getElementById('txt-proyecto').value, fecha: document.getElementById('txt-fecha').value, planta: document.getElementById('txt-planta').value, asesor: document.getElementById('txt-asesor').value, bombeo: document.getElementById('cmb-bombeo').value, correlativo: correlativoGlobal, terminos: document.getElementById('txt-terminos').value, pie: document.getElementById('txt-pie-pagina').value,
+                cotizacionFilas: [], bancoFilas: [], maestroFilas: [], maestroMixers: [], historialFilas: []
+            };
+            document.querySelectorAll('#tabla-cotizacion tbody tr').forEach(tr => { const inp = tr.querySelectorAll('input'); appCache.cotizacionFilas.push({ item: inp[0].value, con: inp[1].value, cem: inp[2].value, slu: inp[3].value, hus: inp[4].value, vol: inp[5].value, pun: inp[6].value }); });
+            document.querySelectorAll('#tabla-bancos tbody tr').forEach(tr => { const inp = tr.querySelectorAll('input'); appCache.bancoFilas.push({ banco: inp[0].value, mon: inp[1].value, cta: inp[2].value, cci: inp[3].value }); });
+            document.querySelectorAll('#tabla-maestro tbody tr').forEach(tr => { const inp = tr.querySelectorAll('input'); appCache.maestroFilas.push({ item: inp[0].value, con: inp[1].value, cem: inp[2].value, slu: inp[3].value, hus: inp[4].value, pun: inp[5].value }); });
+            document.querySelectorAll('#tabla-maestro-mixers tbody tr').forEach(tr => { const inp = tr.querySelectorAll('input'); appCache.maestroMixers.push({ codigo: inp[0].value, placa: inp[1].value, operador: inp[2].value }); });
+            document.querySelectorAll('#tabla-historial tbody tr').forEach(tr => { appCache.historialFilas.push({ codigo: tr.cells[0].innerText, ruc: tr.cells[1].innerText, razon: tr.cells[2].innerText, proyecto: tr.cells[3].innerText, total: tr.cells[4].innerText }); });
+            localStorage.setItem('ecorock_pro_v3_fixed', JSON.stringify(appCache));
+        }
+
+        function recuperarDatosLocal() {
+            const raw = localStorage.getItem('ecorock_pro_v3_fixed');
+            if(!raw) return;
+            const cache = JSON.parse(raw);
+            document.getElementById('txt-ruc').value = cache.ruc || ''; document.getElementById('txt-razon').value = cache.razon || ''; document.getElementById('txt-ubicacion-cliente').value = cache.ubicacionCliente || ''; document.getElementById('txt-proyecto').value = cache.proyecto || ''; document.getElementById('txt-fecha').value = cache.fecha || ''; document.getElementById('txt-planta').value = cache.planta || ''; document.getElementById('txt-asesor').value = cache.asesor || ''; document.getElementById('cmb-bombeo').value = cache.bombeo || 'SI'; correlativoGlobal = cache.correlativo || 2; document.getElementById('lbl-correlativo').innerText = `#10-ECO-${correlativoGlobal}`; document.getElementById('txt-terminos').value = cache.terminos || ''; document.getElementById('txt-pie-pagina').value = cache.pie || '';
+            cache.cotizacionFilas.forEach(f => agregarFilaCotizacion(f));
+            cache.bancoFilas.forEach(f => agregarFilaBanco(f));
+            cache.maestroFilas.forEach(f => agregarFilaMaestro(f));
+            (cache.maestroMixers || []).forEach(m => agregarFilaMaestroMixer(m));
+            cache.historialFilas.forEach(h => { const tbody = document.querySelector('#tabla-historial tbody'); const tr = document.createElement('tr'); tr.innerHTML = `<td><strong>${h.codigo}</strong></td><td>${h.ruc}</td><td>${h.razon}</td><td style="font-size:10px; color:#475569;">${h.proyecto}</td><td class="text-right" style="color:#059669; font-weight:bold;">${h.total}</td><td class="text-center btn-del"><button style="cursor:pointer; border:none; background:none;" onclick="eliminarFila(this)">❌</button></td>`; tbody.appendChild(tr); });
+            document.querySelectorAll('input, textarea, select').forEach(inp => vincularTextoEspejo(inp));
+            calcularTotales();
+        }
+    </script>
+</body>
+</html>

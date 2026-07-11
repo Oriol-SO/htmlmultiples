@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    <style>
+        :root {
+            --primary-color: #0a2540;
+            --accent-green: #70e000;
+            --dark-slate: #1e293b;
+            --border-color: #cbd5e1;
+            --light-bg: #f8fafc;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: #cbd5e1; margin: 0; padding: 40px; color: #334155; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+        
+        .btn-menu { background-color: var(--primary-color); color: white; }
+        .btn-menu:hover { background-color: var(--dark-slate); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Menú Principal</h1>
+        <div class="menu-buttons">
+            <a href="1.COTIZACION PREMEZCLADO V.3 (2).html" class="btn btn-menu">Cotización Premezclado</a>
+            <a href="2.GUIA_REMITENTE_ECOROCK V.2.html" class="btn btn-menu">Guía Remitente Ecorock</a>
+            <a href="3.GUIA DE BOLETA DE VENTA ECOROCK V.2.html" class="btn btn-menu">Guía de Boleta de Venta</a>
+            <a href="4.ORDEN COMPRAS_ECOROCK V.3.html" class="btn btn-menu">Orden de Compras</a>
+        </div>
+    </div>
+</body>
+</html>
