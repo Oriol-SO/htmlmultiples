@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,17 @@
             --light-bg: #f8fafc;
         }
 
-        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-        body { background-color: #cbd5e1; margin: 0; padding: 20px; color: #334155; }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #cbd5e1;
+            margin: 0;
+            padding: 20px;
+            color: #334155;
+        }
 
         /* Controles de la Consola Externa */
         .web-control-panel {
@@ -28,13 +38,15 @@
             justify-content: space-between;
             align-items: center;
             color: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
+
         .web-control-panel .titulo-consola {
             font-size: 14px;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
+
         .web-control-buttons {
             display: flex;
             flex-direction: column;
@@ -53,18 +65,74 @@
             transition: all 0.2s ease-in-out;
             display: inline-block;
         }
-        .btn-print { background-color: #ef4444; color: white; }
-        .btn-print:hover { background-color: #dc2626; transform: translateY(-1px); }
-        .btn-add { background-color: #10b981; color: white; margin-bottom: 8px; }
-        .btn-add:hover { background-color: #059669; }
-        .btn-save { background-color: #3b82f6; color: white; }
-        .btn-save:hover { background-color: #2563eb; }
-        .btn-client { background-color: #6366f1; color: white; margin-top: 4px;}
-        .btn-client:hover { background-color: #4f46e5; }
-        .btn-anular { background-color: #f59e0b; color: white; padding: 4px 8px; font-size: 10px; border-radius: 4px; border: none; cursor: pointer; }
-        .btn-anular:hover { background-color: #d97706; }
-        .btn-vendido { background-color: #10b981; color: white; padding: 4px 8px; font-size: 10px; border-radius: 4px; border: none; cursor: pointer; margin-left: 2px;}
-        .btn-vendido:hover { background-color: #059669; }
+
+        .btn-print {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        .btn-add {
+            background-color: #10b981;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .btn-add:hover {
+            background-color: #059669;
+        }
+
+        .btn-save {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-client {
+            background-color: #6366f1;
+            color: white;
+            margin-top: 4px;
+        }
+
+        .btn-client:hover {
+            background-color: #4f46e5;
+        }
+
+        .btn-anular {
+            background-color: #f59e0b;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-anular:hover {
+            background-color: #d97706;
+        }
+
+        .btn-vendido {
+            background-color: #10b981;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            margin-left: 2px;
+        }
+
+        .btn-vendido:hover {
+            background-color: #059669;
+        }
 
         /* Selector de Régimen Fiscal */
         .regimen-selector-container {
@@ -77,17 +145,20 @@
             margin-bottom: 10px;
             border: 1px solid var(--border-color);
         }
+
         .regimen-label {
             font-size: 11px;
             font-weight: 800;
             color: var(--primary-color);
             text-transform: uppercase;
         }
+
         .btn-regimen {
             background-color: #cbd5e1;
             color: var(--dark-slate);
             border: 1px solid #94a3b8;
         }
+
         .btn-regimen.active {
             background-color: var(--primary-color);
             color: white;
@@ -101,7 +172,7 @@
             margin: 0 auto;
             background: #ffffff;
             padding: 10mm 12mm;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -122,9 +193,27 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
-        .brand-box h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: 1.5px; }
-        .brand-box p { margin: 2px 0 0 0; font-size: 10px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px; }
-        .info-header-box { text-align: right; font-size: 11px; line-height: 1.45; }
+
+        .brand-box h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+
+        .brand-box p {
+            margin: 2px 0 0 0;
+            font-size: 10px;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-header-box {
+            text-align: right;
+            font-size: 11px;
+            line-height: 1.45;
+        }
 
         .document-title-strip {
             margin-top: 12px;
@@ -137,7 +226,7 @@
             align-items: center;
             letter-spacing: 0.5px;
         }
-        
+
         .correlativo-container {
             text-align: right;
             white-space: nowrap;
@@ -146,47 +235,147 @@
         }
 
         /* Formularios */
-        .grid-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
-        .card-datos { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; }
-        .card-datos h3 { margin: 0 0 8px 0; font-size: 11px; color: var(--primary-color); text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; font-weight: 800; }
+        .grid-datos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
 
-        .form-group { display: flex; flex-direction: column; margin-bottom: 6px; }
-        .form-group label { font-size: 10px; font-weight: 700; color: #475569; margin-bottom: 3px; text-transform: uppercase; }
-        .form-group input { padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 11.5px; background: #fff; }
-        
-        .full-width-group { grid-column: 1 / span 2; margin-top: 2px; background: #f1f5f9; padding: 8px 12px; border-radius: 6px; border: 1px dashed #cbd5e1; }
-        .proyecto-textarea { 
-            width: 100%; 
-            min-height: 40px; 
-            font-size: 11.5px; 
-            padding: 6px; 
-            border: 1px solid #cbd5e1; 
-            border-radius: 4px; 
+        .card-datos {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .card-datos h3 {
+            margin: 0 0 8px 0;
+            font-size: 11px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 4px;
+            font-weight: 800;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 6px;
+        }
+
+        .form-group label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 11.5px;
+            background: #fff;
+        }
+
+        .full-width-group {
+            grid-column: 1 / span 2;
+            margin-top: 2px;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .proyecto-textarea {
+            width: 100%;
+            min-height: 40px;
+            font-size: 11.5px;
+            padding: 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
             color: #1e293b;
             resize: vertical;
             font-weight: 600;
         }
 
         /* Tablas */
-        table { width: 100%; border-collapse: collapse; margin-top: 6px; }
-        th { background-color: var(--primary-color) !important; color: white !important; font-size: 10px; padding: 8px 6px; border: 1px solid #1e293b; text-transform: uppercase; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td { border: 1px solid #cbd5e1; padding: 5px; font-size: 11.5px; position: relative; }
-        
-        .input-cell { width: 100%; border: 1px solid transparent; background: transparent; padding: 4px; font-size: 11.5px; color: #0f172a; }
-        .input-cell:focus { border-color: #3b82f6; background: #fff; outline: none; border-radius: 3px; }
-        
-        .text-center { text-align: center !important; }
-        .text-right { text-align: right !important; font-weight: 600; }
-        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+        }
+
+        th {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+            font-size: 10px;
+            padding: 8px 6px;
+            border: 1px solid #1e293b;
+            text-transform: uppercase;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 5px;
+            font-size: 11.5px;
+            position: relative;
+        }
+
+        .input-cell {
+            width: 100%;
+            border: 1px solid transparent;
+            background: transparent;
+            padding: 4px;
+            font-size: 11.5px;
+            color: #0f172a;
+        }
+
+        .input-cell:focus {
+            border-color: #3b82f6;
+            background: #fff;
+            outline: none;
+            border-radius: 3px;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .text-right {
+            text-align: right !important;
+            font-weight: 600;
+        }
+
         /* Ajuste de anchos del Catálogo Maestro */
-        .col-concreto-maestro { width: 35%; }
-        .col-cemento-maestro { width: 15%; }
-        .col-slump-maestro { width: 12%; }
-        .col-huso-maestro { width: 10%; }
+        .col-concreto-maestro {
+            width: 35%;
+        }
 
-        #tabla-maestro td { padding: 12px 6px; }
+        .col-cemento-maestro {
+            width: 15%;
+        }
 
-        .print-value-bridge { display: none; }
+        .col-slump-maestro {
+            width: 12%;
+        }
+
+        .col-huso-maestro {
+            width: 10%;
+        }
+
+        #tabla-maestro td {
+            padding: 12px 6px;
+        }
+
+        .print-value-bridge {
+            display: none;
+        }
 
         .comercial-summary-block {
             display: flex;
@@ -195,32 +384,35 @@
             margin-top: 14px;
             gap: 15px;
         }
-        
-        .table-condiciones { 
-            width: 60%; 
-            margin-top: 0; 
-            height: 100%; 
+
+        .table-condiciones {
+            width: 60%;
+            margin-top: 0;
+            height: 100%;
             position: relative;
             z-index: 9999 !important;
         }
-        .table-condiciones td { 
-            padding: 10px 14px; 
-            font-size: 11.5px; 
-            background: #f8fafc; 
+
+        .table-condiciones td {
+            padding: 10px 14px;
+            font-size: 11.5px;
+            background: #f8fafc;
             border: 1px solid #cbd5e1;
             vertical-align: middle;
         }
-        .table-condiciones .condicion-label { 
-            font-weight: 700; 
-            color: #475569; 
-            width: 38%; 
-            background: #f1f5f9; 
+
+        .table-condiciones .condicion-label {
+            font-weight: 700;
+            color: #475569;
+            width: 38%;
+            background: #f1f5f9;
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        .texto-fijo { 
-            color: #0f172a; 
-            font-weight: 600; 
+
+        .texto-fijo {
+            color: #0f172a;
+            font-weight: 600;
             background: #ffffff;
         }
 
@@ -232,12 +424,13 @@
             border-radius: 4px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; 
-            gap: 8px; 
+            justify-content: space-between;
+            gap: 8px;
         }
+
         .totales-row {
-            display: flex; 
-            justify-content: space-between; 
+            display: flex;
+            justify-content: space-between;
             font-size: 12px;
             line-height: 1.4;
         }
@@ -258,8 +451,24 @@
         }
 
         /* Contenedores Externos */
-        .external-container { max-width: 210mm; margin: 20px auto; background: #fff; padding: 18px; border-radius: 6px; box-shadow: 0 4px 10 rgba(0,0,0,0.05); }
-        .external-container h2 { font-size: 13.5px; margin-top: 0; color: var(--dark-slate); border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; font-weight: 800; text-transform: uppercase; }
+        .external-container {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: #fff;
+            padding: 18px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10 rgba(0, 0, 0, 0.05);
+        }
+
+        .external-container h2 {
+            font-size: 13.5px;
+            margin-top: 0;
+            color: var(--dark-slate);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
 
         /* Estilos del Componente de Clientes Especiales de la Imagen */
         .selector-clientes-card {
@@ -268,8 +477,9 @@
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
+
         .selector-clientes-card h3 {
             margin: 0 0 10px 0;
             font-size: 13px;
@@ -279,6 +489,7 @@
             gap: 6px;
             font-weight: 800;
         }
+
         .input-busqueda-clientes {
             width: 100%;
             padding: 10px 14px;
@@ -289,11 +500,13 @@
             color: #334155;
             background-color: #fff;
         }
+
         .input-busqueda-clientes:focus {
             outline: none;
             border-color: #6366f1;
             box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
         }
+
         .contenedor-chips-clientes {
             display: flex;
             flex-wrap: wrap;
@@ -301,6 +514,7 @@
             max-height: 150px;
             overflow-y: auto;
         }
+
         .chip-cliente {
             background: #edf2f7;
             border: 1px solid #cbd5e1;
@@ -312,10 +526,12 @@
             transition: all 0.2s;
             position: relative;
         }
+
         .chip-cliente:hover {
             background: #e2e8f0;
             border-color: #a0aec0;
         }
+
         .chip-cliente .nombre-empresa {
             font-size: 11px;
             font-weight: 800;
@@ -323,11 +539,13 @@
             display: block;
             margin-bottom: 2px;
         }
+
         .chip-cliente .ruc-empresa {
             font-size: 10px;
             color: #718096;
             display: block;
         }
+
         .btn-eliminar-cliente-chip {
             position: absolute;
             top: 4px;
@@ -347,7 +565,9 @@
             background-color: #fef2f2;
             opacity: 0.7;
         }
-        tr.fila-anulada input, tr.fila-anulada textarea {
+
+        tr.fila-anulada input,
+        tr.fila-anulada textarea {
             color: #94a3b8 !important;
             text-decoration: line-through;
             pointer-events: none;
@@ -357,7 +577,10 @@
             background-color: #f0fdf4;
             border-left: 4px solid #10b981;
         }
-        tr.fila-vendida td { color: #14532d !important; }
+
+        tr.fila-vendida td {
+            color: #14532d !important;
+        }
 
         .footer-premium {
             border-top: 3px solid var(--primary-color);
@@ -370,6 +593,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .footer-textarea {
             width: 100%;
             border: 1px solid transparent;
@@ -387,37 +611,39 @@
         @media print {
             @page {
                 size: A4;
-                margin: 0mm !important; /* Elimina encabezados y rutas de archivos locales del navegador */
-            }
-            body { 
-                background: none !important; 
-                padding: 0 !important; 
-                margin: 0 !important; 
-                color: #000000 !important; 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important; 
+                margin: 0mm !important;
+                /* Elimina encabezados y rutas de archivos locales del navegador */
             }
 
-            .web-control-panel, 
-            .btn-action-row, 
-            .external-container, 
-            .btn-del, 
-            #btn-buscar-ruc, 
+            body {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                color: #000000 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .web-control-panel,
+            .btn-action-row,
+            .external-container,
+            .btn-del,
+            #btn-buscar-ruc,
             .regimen-selector-container,
             .btn-client,
-            th:last-child, 
-            td:last-child { 
-                display: none !important; 
+            th:last-child,
+            td:last-child {
+                display: none !important;
             }
-            
-            .page-a4 { 
-                box-shadow: none !important; 
+
+            .page-a4 {
+                box-shadow: none !important;
                 border: none !important;
-                padding: 10mm 12mm !important; 
+                padding: 10mm 12mm !important;
                 width: 210mm !important;
                 min-height: auto !important;
                 height: auto !important;
-                display: block !important; 
+                display: block !important;
                 page-break-after: avoid !important;
                 page-break-inside: avoid !important;
             }
@@ -434,11 +660,11 @@
                 display: table !important;
                 width: 58% !important;
                 position: relative !important;
-                z-index: 999999 !important; 
+                z-index: 999999 !important;
             }
 
-            .table-condiciones td { 
-                border: 1px solid #cbd5e1 !important; 
+            .table-condiciones td {
+                border: 1px solid #cbd5e1 !important;
                 background-color: #f8fafc !important;
                 color: #000000 !important;
                 font-size: 11.5px !important;
@@ -452,38 +678,75 @@
                 flex-direction: column !important;
             }
 
-            .input-cell { display: none !important; }
-            .print-value-bridge { 
-                display: block !important; 
-                color: #000000 !important; 
+            .input-cell {
+                display: none !important;
+            }
+
+            .print-value-bridge {
+                display: block !important;
+                color: #000000 !important;
                 font-size: 11.5px !important;
                 width: 100%;
                 white-space: pre-wrap;
             }
 
-            input[type="text"], input[type="date"], select {
+            input[type="text"],
+            input[type="date"],
+            select {
                 border: none !important;
                 background: transparent !important;
                 padding: 0 !important;
                 color: #000000 !important;
                 width: 100% !important;
             }
-            
-            .proyecto-textarea { border: none !important; background: transparent !important; resize: none !important; min-height: unset !important; height: auto !important; color: #000 !important; }
-            .full-width-group { padding: 4px 8px !important; margin-top: 0 !important; background: #f1f5f9 !important; }
-            .header-canvas { background-color: var(--primary-color) !important; color: white !important; }
-            th { background-color: var(--primary-color) !important; color: white !important; }
-            .lema-container { background-color: #f7fee7 !important; margin: 8px 0 !important; padding: 6px !important; }
-            .footer-premium { background-color: #f8fafc !important; border-top: 3px solid var(--primary-color) !important; margin-top: 10px !important; }
+
+            .proyecto-textarea {
+                border: none !important;
+                background: transparent !important;
+                resize: none !important;
+                min-height: unset !important;
+                height: auto !important;
+                color: #000 !important;
+            }
+
+            .full-width-group {
+                padding: 4px 8px !important;
+                margin-top: 0 !important;
+                background: #f1f5f9 !important;
+            }
+
+            .header-canvas {
+                background-color: var(--primary-color) !important;
+                color: white !important;
+            }
+
+            th {
+                background-color: var(--primary-color) !important;
+                color: white !important;
+            }
+
+            .lema-container {
+                background-color: #f7fee7 !important;
+                margin: 8px 0 !important;
+                padding: 6px !important;
+            }
+
+            .footer-premium {
+                background-color: #f8fafc !important;
+                border-top: 3px solid var(--primary-color) !important;
+                margin-top: 10px !important;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="web-control-panel">
         <div class="titulo-consola">Consola de Ingeniería y Despacho — ECOROCK S.A.C.</div>
         <div class="web-control-buttons">
-            <button class="btn btn-save" onclick="guardarHistorialEImprimir()">💾 Guardar en Historial e Imprimir</button>
+            <button class="btn btn-save" onclick="guardarHistorialEImprimir()">💾 Guardar en Historial e
+                Imprimir</button>
         </div>
     </div>
 
@@ -495,7 +758,7 @@
                     <p>Resistencia que construye confianza</p>
                 </div>
                 <div class="info-header-box">
-                    <strong>RUC N°: 2061594298</strong><br>
+                    <strong>RUC N°: 20615944298</strong><br>
                     📍 Pj. Quiñones Nro. 78 - Huancayo - Chilca<br>
                     📞 977 597 194 / 944 417 815<br>
                     ✉️ ecorock.ventas@gmail.com
@@ -514,7 +777,9 @@
                         <label>RUC / DNI del Cliente</label>
                         <div style="display:flex; gap:6px;">
                             <input type="text" id="txt-ruc" value="20605342981" oninput="persistirTodo()">
-                            <button class="btn" id="btn-buscar-ruc" style="background:var(--primary-color); color:#fff; padding: 0 10px;" onclick="redireccionarSunat()">Buscar RUC</button>
+                            <button class="btn" id="btn-buscar-ruc"
+                                style="background:var(--primary-color); color:#fff; padding: 0 10px;"
+                                onclick="redireccionarSunat()">Buscar RUC</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -523,7 +788,8 @@
                     </div>
                     <div class="form-group" style="margin-top: 4px;">
                         <label># Celular</label>
-                        <input type="text" id="txt-celular" value="987654321" placeholder="Ej. 977597194" oninput="persistirTodo()">
+                        <input type="text" id="txt-celular" value="987654321" placeholder="Ej. 977597194"
+                            oninput="persistirTodo()">
                     </div>
                     <button class="btn btn-client" onclick="guardarClienteActual()">💾 Guardar Cliente Directo</button>
                 </div>
@@ -540,21 +806,28 @@
                     </div>
                     <div class="form-group">
                         <label>Ubicación de planta Concretera</label>
-                        <input type="text" id="txt-ubicacion" value="PLANTA CHILCA - HUANCAYO" oninput="persistirTodo()">
+                        <input type="text" id="txt-ubicacion" value="PLANTA CHILCA - HUANCAYO"
+                            oninput="persistirTodo()">
                     </div>
                 </div>
 
                 <div class="full-width-group">
-                    <label style="font-size: 10px; font-weight: 700; color: #475569; display: block; margin-bottom: 2px; text-transform: uppercase;">Proyecto / Destino</label>
-                    <textarea id="txt-proyecto" class="proyecto-textarea" placeholder="Escriba los detalles..." oninput="persistirTodo()">WESTFALIA FRUIT - CONSTRUCCIÓN INDUSTRIAL Y PAVIMENTACIÓN DE ALTA RESISTENCIA EN PLATAFORMA CENTRAL</textarea>
+                    <label
+                        style="font-size: 10px; font-weight: 700; color: #475569; display: block; margin-bottom: 2px; text-transform: uppercase;">Proyecto
+                        / Destino</label>
+                    <textarea id="txt-proyecto" class="proyecto-textarea" placeholder="Escriba los detalles..."
+                        oninput="persistirTodo()">WESTFALIA FRUIT - CONSTRUCCIÓN INDUSTRIAL Y PAVIMENTACIÓN DE ALTA RESISTENCIA EN PLATAFORMA CENTRAL</textarea>
                 </div>
             </div>
 
             <div class="regimen-selector-container">
                 <span class="regimen-label">Régimen de Liquidación:</span>
-                <button id="btn-regimen-con-igv" class="btn btn-regimen active" onclick="cambiarRegimenFiscal('CON_IGV')">Con IGV</button>
-                <button id="btn-regimen-sin-igv" class="btn btn-regimen" onclick="cambiarRegimenFiscal('SIN_IGV')">Sin IGV</button>
-                <button id="btn-regimen-comprobante" class="btn btn-regimen" onclick="cambiarRegimenFiscal('SIN_COMPROBANTE')">Sin Comprobante</button>
+                <button id="btn-regimen-con-igv" class="btn btn-regimen active"
+                    onclick="cambiarRegimenFiscal('CON_IGV')">Con IGV</button>
+                <button id="btn-regimen-sin-igv" class="btn btn-regimen" onclick="cambiarRegimenFiscal('SIN_IGV')">Sin
+                    IGV</button>
+                <button id="btn-regimen-comprobante" class="btn btn-regimen"
+                    onclick="cambiarRegimenFiscal('SIN_COMPROBANTE')">Sin Comprobante</button>
             </div>
 
             <div class="btn-action-row">
@@ -605,7 +878,8 @@
                         <span id="lbl-text-igv">IGV (18.00%):</span>
                         <span id="lbl-igv" style="font-weight:700;">S/. 0.00</span>
                     </div>
-                    <div class="totales-row" style="font-weight:800; color:#dc2626; border-top: 1px dashed #cbd5e1; padding-top: 6px; font-size: 13.5px;">
+                    <div class="totales-row"
+                        style="font-weight:800; color:#dc2626; border-top: 1px dashed #cbd5e1; padding-top: 6px; font-size: 13.5px;">
                         <span>TOTAL GENERAL:</span>
                         <span id="lbl-total">S/. 0.00</span>
                     </div>
@@ -617,8 +891,12 @@
             </div>
 
             <div style="margin-top:15px;">
-                <h3 style="font-size:10px; color:var(--primary-color); text-transform:uppercase; margin-bottom:4px; font-weight: 800;">Observaciones y Términos</h3>
-                <textarea id="txt-terminos" style="width:100%; height:65px; font-size:10px; padding:6px; border:1px solid #cbd5e1; border-radius:4px; color:#475569;" oninput="persistirTodo()">
+                <h3
+                    style="font-size:10px; color:var(--primary-color); text-transform:uppercase; margin-bottom:4px; font-weight: 800;">
+                    Observaciones y Términos</h3>
+                <textarea id="txt-terminos"
+                    style="width:100%; height:65px; font-size:10px; padding:6px; border:1px solid #cbd5e1; border-radius:4px; color:#475569;"
+                    oninput="persistirTodo()">
 1. PROGRAMACIÓN Y ENTREGA: Pedidos con 24 horas de anticipación sujeto a disponibilidad de planta.
 2. CONTROL DE CALIDAD: Ensayos de rotura se realizan bajo las normas NTP correspondientes.
 3. VIGENCIA DE PRECIOS: La presente oferta comercial expira a los siete (7) días calendario desde su emisión.</textarea>
@@ -643,17 +921,21 @@
         </div>
 
         <div class="footer-premium">
-            <textarea class="footer-textarea" id="txt-pie-pagina" rows="1" oninput="persistirTodo()">EN ECOROCK, CONSTRUIMOS MÁS QUE ESTRUCTURAS: CONSTRUIMOS CONFIANZA.</textarea>
-            <div style="font-size: 8.5px; color: #94a3b8; margin-top: 4px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">Planta Tecnificada de Concreto Premezclado y Logística de Ingeniería</div>
+            <textarea class="footer-textarea" id="txt-pie-pagina" rows="1"
+                oninput="persistirTodo()">EN ECOROCK, CONSTRUIMOS MÁS QUE ESTRUCTURAS: CONSTRUIMOS CONFIANZA.</textarea>
+            <div
+                style="font-size: 8.5px; color: #94a3b8; margin-top: 4px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">
+                Planta Tecnificada de Concreto Premezclado y Logística de Ingeniería</div>
         </div>
     </div>
 
     <div class="external-container">
         <div class="selector-clientes-card">
             <h3>🔍 SELECTOR RÁPIDO DE CLIENTE</h3>
-            <input type="text" class="input-busqueda-clientes" id="txt-buscar-cliente" placeholder="Escribe razón social o RUC..." oninput="filtrarChipsClientes()">
+            <input type="text" class="input-busqueda-clientes" id="txt-buscar-cliente"
+                placeholder="Escribe razón social o RUC..." oninput="filtrarChipsClientes()">
             <div class="contenedor-chips-clientes" id="clientes-chips-box">
-                </div>
+            </div>
         </div>
 
         <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -701,17 +983,17 @@
 
     <script>
         let correlativoGlobal = 1;
-        let regimenFiscalGlobal = 'CON_IGV'; 
+        let regimenFiscalGlobal = 'CON_IGV';
         let listaClientesGlobal = [];
 
-        function guardarHistorialEImprimir(){
+        function guardarHistorialEImprimir() {
             salvarEnHistorialLocal();
             persistirTodo();
             window.print();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            if(!document.getElementById('txt-fecha').value) {
+            if (!document.getElementById('txt-fecha').value) {
                 document.getElementById('txt-fecha').value = new Date().toISOString().split('T')[0];
             }
             recuperarDatosLocal();
@@ -736,7 +1018,7 @@
 
         function redireccionarSunat() {
             const ruc = document.getElementById('txt-ruc').value.trim();
-            if(ruc) {
+            if (ruc) {
                 navigator.clipboard.writeText(ruc).then(() => {
                     alert("Documento [" + ruc + "] copiado al portapapeles.");
                     window.open('https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/FrameCriterioBusquedaWeb.jsp', '_blank');
@@ -746,14 +1028,14 @@
 
         function cambiarRegimenFiscal(nuevoRegimen) {
             regimenFiscalGlobal = nuevoRegimen;
-            
+
             document.getElementById('btn-regimen-con-igv').classList.remove('active');
             document.getElementById('btn-regimen-sin-igv').classList.remove('active');
             document.getElementById('btn-regimen-comprobante').classList.remove('active');
 
-            if(nuevoRegimen === 'CON_IGV') document.getElementById('btn-regimen-con-igv').classList.add('active');
-            if(nuevoRegimen === 'SIN_IGV') document.getElementById('btn-regimen-sin-igv').classList.add('active');
-            if(nuevoRegimen === 'SIN_COMPROBANTE') document.getElementById('btn-regimen-comprobante').classList.add('active');
+            if (nuevoRegimen === 'CON_IGV') document.getElementById('btn-regimen-con-igv').classList.add('active');
+            if (nuevoRegimen === 'SIN_IGV') document.getElementById('btn-regimen-sin-igv').classList.add('active');
+            if (nuevoRegimen === 'SIN_COMPROBANTE') document.getElementById('btn-regimen-comprobante').classList.add('active');
 
             recalcularPreciosUnitariosPorRegimen();
         }
@@ -762,17 +1044,17 @@
             const filas = document.querySelectorAll('#tabla-cotizacion tbody tr');
             filas.forEach(fila => {
                 const inputItem = fila.cells[0].querySelector('input');
-                if(inputItem && inputItem.value.trim() !== '') {
+                if (inputItem && inputItem.value.trim() !== '') {
                     autocompletarPorItem(inputItem);
                 }
             });
             calcularTotales();
         }
 
-        function agregarFilaCotizacion(data = {item:'', con:'', cem:'', slu:'', hus:'', vol:0, pun:0}) {
+        function agregarFilaCotizacion(data = { item: '', con: '', cem: '', slu: '', hus: '', vol: 0, pun: 0 }) {
             const tbody = document.querySelector('#tabla-cotizacion tbody');
             const tr = document.createElement('tr');
-            
+
             let vVol = parseFloat(data.vol) || 0;
             let vPun = parseFloat(data.pun) || 0;
 
@@ -814,23 +1096,23 @@
 
         function autocompletarPorItem(inputNode) {
             const itemBuscado = inputNode.value.trim();
-            if(!itemBuscado) return;
-            
+            if (!itemBuscado) return;
+
             const filasMaestro = document.querySelectorAll('#tabla-maestro tbody tr:not(.fila-anulada)');
             const trCotizacion = inputNode.closest('tr');
             const inputs = trCotizacion.querySelectorAll('input');
 
             filasMaestro.forEach(fila => {
                 const itemM = fila.cells[0].querySelector('input').value.trim();
-                if(itemM === itemBuscado) {
-                    inputs[1].value = fila.cells[1].querySelector('input').value; 
-                    inputs[2].value = fila.cells[2].querySelector('input').value; 
-                    inputs[3].value = fila.cells[3].querySelector('input').value; 
-                    inputs[4].value = fila.cells[4].querySelector('input').value; 
-                    
+                if (itemM === itemBuscado) {
+                    inputs[1].value = fila.cells[1].querySelector('input').value;
+                    inputs[2].value = fila.cells[2].querySelector('input').value;
+                    inputs[3].value = fila.cells[3].querySelector('input').value;
+                    inputs[4].value = fila.cells[4].querySelector('input').value;
+
                     let pUnitBase = parseFloat(fila.cells[5].querySelector('input').value) || 0;
                     let pUnitConIgv = parseFloat(fila.cells[6].querySelector('input').value) || 0;
-                    
+
                     if (regimenFiscalGlobal === 'SIN_IGV') {
                         let calculoSinIgv = pUnitConIgv - 10;
                         let redondeadoSinIgv = Math.ceil(calculoSinIgv / 5) * 5;
@@ -844,12 +1126,12 @@
                     }
                 }
             });
-            
+
             trCotizacion.querySelectorAll('input').forEach(inp => vincularTextoEspejo(inp));
             calcularTotales();
         }
 
-        function agregarFilaBanco(data = {banco:'', mon:'', cta:'', cci:''}) {
+        function agregarFilaBanco(data = { banco: '', mon: '', cta: '', cci: '' }) {
             const tbody = document.querySelector('#tabla-bancos tbody');
             const tr = document.createElement('tr');
             tr.innerHTML = `
@@ -875,10 +1157,10 @@
             persistirTodo();
         }
 
-        function agregarFilaMaestro(data = {item:'', con:'', cem:'', slu:'', hus:'', pun:0}) {
+        function agregarFilaMaestro(data = { item: '', con: '', cem: '', slu: '', hus: '', pun: 0 }) {
             const tbody = document.querySelector('#tabla-maestro tbody');
             const tr = document.createElement('tr');
-            
+
             let vPun = parseFloat(data.pun) || 0;
             let vPunIgv = vPun * 1.18;
             let vSlu = data.slu !== undefined ? data.slu : '';
@@ -901,7 +1183,7 @@
             const tr = inputNode.closest('tr');
             const valBase = parseFloat(inputNode.value) || 0;
             const inputIgv = tr.cells[6].querySelector('input');
-            if(inputIgv) {
+            if (inputIgv) {
                 inputIgv.value = (valBase * 1.18).toFixed(2);
             }
             persistirTodo();
@@ -911,7 +1193,7 @@
             const tr = inputNode.closest('tr');
             const valIgv = parseFloat(inputNode.value) || 0;
             const inputBase = tr.cells[5].querySelector('input');
-            if(inputBase) {
+            if (inputBase) {
                 inputBase.value = (valIgv / 1.18).toFixed(2);
             }
             persistirTodo();
@@ -927,18 +1209,18 @@
             const fila = btn.closest('tr');
             fila.classList.remove('fila-vendida');
             fila.classList.add('fila-anulada');
-            
+
             const btnAnular = fila.querySelector('.btn-anular');
             const btnVendido = fila.querySelector('.btn-vendido');
-            
+
             btnAnular.innerText = "Anulado";
             btnAnular.disabled = true;
             btnAnular.style.backgroundColor = "#ef4444";
-            
+
             btnVendido.innerText = "Vender";
             btnVendido.disabled = false;
             btnVendido.style.backgroundColor = "#10b981";
-            
+
             persistirTodo();
         }
 
@@ -946,35 +1228,35 @@
             const fila = btn.closest('tr');
             fila.classList.remove('fila-anulada');
             fila.classList.add('fila-vendida');
-            
+
             const btnAnular = fila.querySelector('.btn-anular');
             const btnVendido = fila.querySelector('.btn-vendido');
-            
+
             btnVendido.innerText = "Vendido ✔";
             btnVendido.disabled = true;
             btnVendido.style.backgroundColor = "#047857";
-            
+
             btnAnular.innerText = "Anular";
             btnAnular.disabled = false;
             btnAnular.style.backgroundColor = "#f59e0b";
-            
+
             persistirTodo();
         }
 
         function calcularTotales() {
             let subtotal = 0;
             const filas = document.querySelectorAll('#tabla-cotizacion tbody tr');
-            
+
             filas.forEach(fila => {
                 const inputs = fila.querySelectorAll('input');
                 const vol = parseFloat(inputs[5].value) || 0;
                 const unit = parseFloat(inputs[6].value) || 0;
                 const totalFila = vol * unit;
                 fila.cells[7].innerText = formatearMiles(totalFila);
-                
+
                 const bridges = fila.querySelectorAll('.print-value-bridge');
-                if(bridges[5]) bridges[5].innerText = vol.toFixed(2);
-                if(bridges[6]) bridges[6].innerText = unit.toFixed(2);
+                if (bridges[5]) bridges[5].innerText = vol.toFixed(2);
+                if (bridges[6]) bridges[6].innerText = unit.toFixed(2);
 
                 subtotal += totalFila;
             });
@@ -1008,13 +1290,13 @@
             const razon = document.getElementById('txt-razon').value.trim();
             const celular = document.getElementById('txt-celular').value.trim();
 
-            if(!ruc || !razon) {
+            if (!ruc || !razon) {
                 alert("Por favor introduce RUC y Razón Social válidos antes de guardar.");
                 return;
             }
 
             const existe = listaClientesGlobal.find(c => c.ruc === ruc);
-            if(existe) {
+            if (existe) {
                 existe.razon = razon;
                 existe.celular = celular;
             } else {
@@ -1029,7 +1311,7 @@
         function renderizarChipsClientes() {
             const box = document.getElementById('clientes-chips-box');
             box.innerHTML = '';
-            
+
             listaClientesGlobal.forEach((cliente, index) => {
                 const chip = document.createElement('div');
                 chip.className = 'chip-cliente';
@@ -1045,11 +1327,11 @@
 
         function seleccionarClienteChip(ruc) {
             const cliente = listaClientesGlobal.find(c => c.ruc === ruc);
-            if(cliente) {
+            if (cliente) {
                 document.getElementById('txt-ruc').value = cliente.ruc;
                 document.getElementById('txt-razon').value = cliente.razon;
                 document.getElementById('txt-celular').value = cliente.celular || '';
-                
+
                 document.querySelectorAll('#txt-ruc, #txt-razon, #txt-celular').forEach(inp => {
                     vincularTextoEspejo(inp);
                 });
@@ -1058,8 +1340,8 @@
         }
 
         function eliminarClienteChip(event, index) {
-            event.stopPropagation(); 
-            if(confirm("¿Seguro que deseas remover este cliente de la lista rápida?")) {
+            event.stopPropagation();
+            if (confirm("¿Seguro que deseas remover este cliente de la lista rápida?")) {
                 listaClientesGlobal.splice(index, 1);
                 renderizarChipsClientes();
                 persistirTodo();
@@ -1069,11 +1351,11 @@
         function filtrarChipsClientes() {
             const query = document.getElementById('txt-buscar-cliente').value.toLowerCase().trim();
             const chips = document.querySelectorAll('.chip-cliente');
-            
+
             chips.forEach(chip => {
                 const nombre = chip.querySelector('.nombre-empresa').innerText.toLowerCase();
                 const ruc = chip.querySelector('.ruc-empresa').innerText.toLowerCase();
-                if(nombre.includes(query) || ruc.includes(query)) {
+                if (nombre.includes(query) || ruc.includes(query)) {
                     chip.style.display = 'block';
                 } else {
                     chip.style.display = 'none';
@@ -1087,7 +1369,7 @@
             const razon = document.getElementById('txt-razon').value;
             const proyecto = document.getElementById('txt-proyecto').value;
             const terminos = document.getElementById('txt-terminos').value;
-            const comentario = ""; 
+            const comentario = "";
             const total = document.getElementById('lbl-total').innerText;
 
             inyectarEnTablaHistorialHTML(codigo, ruc, razon, proyecto, terminos, comentario, total, 'NINGUNO');
@@ -1101,10 +1383,10 @@
         function inyectarEnTablaHistorialHTML(codigo, ruc, razon, proyecto, terminos, comentario, total, estado = 'NINGUNO') {
             const tbody = document.querySelector('#tabla-historial tbody');
             const tr = document.createElement('tr');
-            
-            if(estado === 'ANULADO') tr.classList.add('fila-anulada');
-            if(estado === 'VENDIDO') tr.classList.add('fila-vendida');
-            
+
+            if (estado === 'ANULADO') tr.classList.add('fila-anulada');
+            if (estado === 'VENDIDO') tr.classList.add('fila-vendida');
+
             tr.innerHTML = `
                 <td><strong>${codigo}</strong></td>
                 <td>${ruc}</td>
@@ -1137,7 +1419,7 @@
                 regimenFiscal: regimenFiscalGlobal,
                 terminos: document.getElementById('txt-terminos').value,
                 pie: document.getElementById('txt-pie-pagina').value,
-                asesor:(document.getElementById('txt-asesor')||{}).value||'',
+                asesor: (document.getElementById('txt-asesor') || {}).value || '',
                 cotizacionFilas: [],
                 bancoFilas: [],
                 maestroFilas: [],
@@ -1147,30 +1429,30 @@
 
             document.querySelectorAll('#tabla-cotizacion tbody tr').forEach(tr => {
                 const inputs = tr.querySelectorAll('input');
-                if(inputs.length > 0) {
+                if (inputs.length > 0) {
                     cache.cotizacionFilas.push({ item: inputs[0].value, con: inputs[1].value, cem: inputs[2].value, slu: inputs[3].value, hus: inputs[4].value, vol: inputs[5].value, pun: inputs[6].value });
                 }
             });
 
             document.querySelectorAll('#tabla-bancos tbody tr').forEach(tr => {
                 const inputs = tr.querySelectorAll('input');
-                if(inputs.length > 0) {
+                if (inputs.length > 0) {
                     cache.bancoFilas.push({ banco: inputs[0].value, mon: inputs[1].value, cta: inputs[2].value, cci: inputs[3].value });
                 }
             });
 
             document.querySelectorAll('#tabla-maestro tbody tr').forEach(tr => {
                 const inputs = tr.querySelectorAll('input');
-                if(inputs.length > 0) {
+                if (inputs.length > 0) {
                     cache.maestroFilas.push({ item: inputs[0].value, con: inputs[1].value, cem: inputs[2].value, slu: inputs[3].value, hus: inputs[4].value, pun: inputs[5].value });
                 }
             });
 
             document.querySelectorAll('#tabla-historial tbody tr').forEach(tr => {
                 let est = 'NINGUNO';
-                if(tr.classList.contains('fila-anulada')) est = 'ANULADO';
-                if(tr.classList.contains('fila-vendida')) est = 'VENDIDO';
-                
+                if (tr.classList.contains('fila-anulada')) est = 'ANULADO';
+                if (tr.classList.contains('fila-vendida')) est = 'VENDIDO';
+
                 cache.historialFilas.push({
                     codigo: tr.cells[0].innerText,
                     ruc: tr.cells[1].innerText,
@@ -1188,24 +1470,24 @@
 
         function recuperarDatosLocal() {
             const raw = localStorage.getItem('ecorock_master_v12');
-            if(!raw) {
+            if (!raw) {
                 // Catálogo Maestro Original
-                agregarFilaMaestro({item:'1', con:"Concreto f'c 175 kg/cm²", cem:"Cemento Andino Tipo I", slu:"5'' a 6''", hus:"67-57", pun:300.85});
-                agregarFilaMaestro({item:'2', con:"Concreto f'c 210 kg/cm²", cem:"Cemento Andino Tipo I", slu:"4'' a 6''", hus:"67-57", pun:322.03});
-                agregarFilaMaestro({item:'3', con:"Concreto f'c 210 kg/cm² Premezclado Premium", cem:"Cemento Andino Tipo V", slu:"4'' a 6''", hus:"57", pun:347.46});
-                agregarFilaMaestro({item:'4', con:"Concreto f'c 245 kg/cm²", cem:"Cemento Andino Tipo I", slu:"4'' a 6''", hus:"67-57", pun:339.00});
-                agregarFilaMaestro({item:'5', con:"Concreto f'c 280 kg/cm² Alta Resistencia", cem:"Cemento Andino Tipo I", slu:"4'' a 6''", hus:"67-57", pun:355.93});
-                agregarFilaMaestro({item:'6', con:"Concreto f'c 280 kg/cm² Estructural Premium", cem:"Cemento Andino Tipo V", slu:"4'' a 6''", hus:"57", pun:381.36});
-                agregarFilaMaestro({item:'7', con:"Concreto f'c 350 kg/cm² Solución Industrial", cem:"Cemento Andino Tipo I", slu:"4'' a 6''", hus:"57", pun:411.02});
-                agregarFilaMaestro({item:'8', con:"Concreto f'c 140 kg/cm² Fórmulas Convencionales", cem:"Cemento Andino Tipo I", slu:"5'' a 6''", hus:"67", pun:283.90});
-                agregarFilaMaestro({item:'9', con:"Concreto f'c 100 kg/cm² Soleras y Falsos Pisos", cem:"Cemento Andino Tipo I", slu:"5'' a 6''", hus:"67", pun:275.42});
-                agregarFilaMaestro({item:'10', con:"Lanzado / Shottcrete f'c 210 kg/cm² Estabilización", cem:"Cemento Andino Tipo I", slu:"4''", hus:"67", pun:351.69});
+                agregarFilaMaestro({ item: '1', con: "Concreto f'c 175 kg/cm²", cem: "Cemento Andino Tipo I", slu: "5'' a 6''", hus: "67-57", pun: 300.85 });
+                agregarFilaMaestro({ item: '2', con: "Concreto f'c 210 kg/cm²", cem: "Cemento Andino Tipo I", slu: "4'' a 6''", hus: "67-57", pun: 322.03 });
+                agregarFilaMaestro({ item: '3', con: "Concreto f'c 210 kg/cm² Premezclado Premium", cem: "Cemento Andino Tipo V", slu: "4'' a 6''", hus: "57", pun: 347.46 });
+                agregarFilaMaestro({ item: '4', con: "Concreto f'c 245 kg/cm²", cem: "Cemento Andino Tipo I", slu: "4'' a 6''", hus: "67-57", pun: 339.00 });
+                agregarFilaMaestro({ item: '5', con: "Concreto f'c 280 kg/cm² Alta Resistencia", cem: "Cemento Andino Tipo I", slu: "4'' a 6''", hus: "67-57", pun: 355.93 });
+                agregarFilaMaestro({ item: '6', con: "Concreto f'c 280 kg/cm² Estructural Premium", cem: "Cemento Andino Tipo V", slu: "4'' a 6''", hus: "57", pun: 381.36 });
+                agregarFilaMaestro({ item: '7', con: "Concreto f'c 350 kg/cm² Solución Industrial", cem: "Cemento Andino Tipo I", slu: "4'' a 6''", hus: "57", pun: 411.02 });
+                agregarFilaMaestro({ item: '8', con: "Concreto f'c 140 kg/cm² Fórmulas Convencionales", cem: "Cemento Andino Tipo I", slu: "5'' a 6''", hus: "67", pun: 283.90 });
+                agregarFilaMaestro({ item: '9', con: "Concreto f'c 100 kg/cm² Soleras y Falsos Pisos", cem: "Cemento Andino Tipo I", slu: "5'' a 6''", hus: "67", pun: 275.42 });
+                agregarFilaMaestro({ item: '10', con: "Lanzado / Shottcrete f'c 210 kg/cm² Estabilización", cem: "Cemento Andino Tipo I", slu: "4''", hus: "67", pun: 351.69 });
 
-                agregarFilaCotizacion({item:'1', con:"Concreto f'c 175 kg/cm²", cem:"Cemento Andino Tipo I", slu:"5'' a 6''", hus:"67-57", vol:30.00, pun:300.85});
-                agregarFilaCotizacion({item:'2', con:"Concreto f'c 210 kg/cm²", cem:"Cemento Andino Tipo I", slu:"4'' a 6''", hus:"67-57", vol:50.00, pun:322.03});
-                
-                agregarFilaBanco({banco:'BCP BANCO DE CRÉDITO', mon:'Soles (S/.)', cta:'191-20615942-98', cci:'002-1912061594298-50'});
-                
+                agregarFilaCotizacion({ item: '1', con: "Concreto f'c 175 kg/cm²", cem: "Cemento Andino Tipo I", slu: "5'' a 6''", hus: "67-57", vol: 30.00, pun: 300.85 });
+                agregarFilaCotizacion({ item: '2', con: "Concreto f'c 210 kg/cm²", cem: "Cemento Andino Tipo I", slu: "4'' a 6''", hus: "67-57", vol: 50.00, pun: 322.03 });
+
+                agregarFilaBanco({ banco: 'BCP BANCO DE CRÉDITO', mon: 'Soles (S/.)', cta: '191-20615942-98', cci: '002-1912061594298-50' });
+
                 // Cliente demo basado en tu imagen de referencia
                 listaClientesGlobal = [
                     { ruc: '20609892677', razon: 'GRUPO ECOANDINA S.A.C.', celular: '999999999' }
@@ -1224,12 +1506,12 @@
             document.getElementById('lbl-correlativo').innerText = `#10-ECO-${correlativoGlobal}`;
             document.getElementById('txt-terminos').value = cache.terminos || '';
             document.getElementById('txt-pie-pagina').value = cache.pie || '';
-            if(document.getElementById('txt-asesor')) document.getElementById('txt-asesor').value=cache.asesor||'';
+            if (document.getElementById('txt-asesor')) document.getElementById('txt-asesor').value = cache.asesor || '';
 
             document.querySelector('#tabla-maestro tbody').innerHTML = '';
             cache.maestroFilas.forEach(f => agregarFilaMaestro(f));
 
-            if(cache.regimenFiscal) {
+            if (cache.regimenFiscal) {
                 cambiarRegimenFiscal(cache.regimenFiscal);
             }
 
@@ -1250,4 +1532,5 @@
         }
     </script>
 </body>
+
 </html>
